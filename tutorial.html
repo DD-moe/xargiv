@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+	<title>Tutorial</title>
+	<meta charset="UTF-8">
+	<style>
+		body{background-color:#26734d;font-family:Arial;}
+		#container{width:1600px;height:5280px;background-color:#40bf80;margin-left:auto;margin-right:auto;margin-top:2%;margin-bottom:2%;border-radius:20px;}
+		#header{width:96%;height:200px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:30px;}
+		#top{width:100%;height:90px;text-align:center;line-height:90px;color:#26734d;}
+		#menu{background-color:#40bf80;width:96%;height:80px;border:6px solid #26734d;border-radius:20px;margin-left:auto;margin-right:auto;}
+		#menu ul li a{display:block;text-decoration:none;color:#26734d;font-size:24px;position:relative;top:10px;}
+		#menu ul li{float:left;line-height:43px;margin-left:12px;list-style-type:none;}
+		.list{background-color:#8cd9b3;border-radius:10px;width:346px;height:60px;position:relative;top:-6px;left:-26px;}
+		.list:hover{background-color:#66ffb5;}
+		#a{position:relative;left:130px;}
+		#b{position:relative;left:140px;}
+		#c{position:relative;left:110px;}
+		#d{position:relative;left:100px;}
+		
+		#content{width:96%;height:4850px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:70px;}
+		
+		.img{position:relative;top:40px;left:40px;border: 4px solid black;float:left;}
+		.img_a{position:relative;top:40px;left:80px;}
+		#img1_div{width:500px;float:left;}
+		.ghi{position:relative;left:80px;top:40px;color:#26734d;font-size:18px;}
+		#clear1{clear:both;width:96%;height:20px;background-color:#26734d;border-radius:20px;position:relative;left:30px;top:60px;}
+		#sec2{position:relative;top:40px;}
+		.jkl{position:relative;left:70px;top:40px;color:#26734d;font-size:18px;}
+		#sec3{position:relative;top:90px;}
+		#sec4{position:relative;top:130px;}
+		#tab_img5{position:relative;left:200px;}
+		#sec5{position:relative;top:170px;}
+		#video_sec5{position:relative;top:40px;left:300px;}
+		#title_img5{position:relative;top:20px;left:420px;color:#26734d;font-family:Arial;}
+		
+		#footer{width:96%;height:100px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:90px;}
+		.footer_text_a{color:#26734d;font-size:18px;position:relative;left:400px;top:20px;}
+		.footer_text_b{color:#26734d;font-size:18px;position:relative;left:280px;top:20px;}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="top"> <h1>RandTextureGen - Tutorial</h1> </div>
+			<div id="menu">
+				<ul>
+					<li> <div class="list"><a id="a" href="home.html">HOME</a></div> </li>
+					<li> <div class="list"><a id="b" href="app.html">APP</a></div> </li>
+					<li> <div class="list"><a id="c" href="#">TUTORIAL</a></div> </li>
+					<li> <div class="list"><a id="d" href="terms.html">COPYRIGHT</a></div> </li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div id="sec1">
+				<img class="img" src="img1.png">
+				<div id="img1_div">
+					<p class="ghi">1 &#8608; Navigation panel</p>
+					<p class="ghi">2 &#8608; Main canvas used to display generated texture (keep in mind, that it’s size is equal to demanded texture size and it’s scaled when texture size is greater than 1024px)</p>
+					<p class="ghi">3 &#8608; Pattern looking canvas – it’s purpose is to help u ser to find regular patterns or seems in generated texture (keep in mind that texture is 8 times smaller than in main canvas and given canvas size is 3 times lesser than main canvas)</p>
+				</div>
+				<div id="clear1"></div>
+			</div>
+			
+			<div id="sec2">
+				<img class="img" src="img2.png">
+				<div id="img1_div">
+					<p class="jkl">4 &#8608; ‘Spawn’ buton used to spawn on the main canvas</p>
+					<p class="jkl">5 &#8608; ‘Clear’ buton used to clear only the main canvas</p>
+					<p class="jkl">6 &#8608; ‘See result’ buton used to copy image from Main canvas to pattern checking canvas</p>
+					<img class="img_a" src="img3.png">
+					<br><br>
+					<p class="jkl">7 &#8608; Button used to load default preset in (14) values</p>
+					<p class="jkl">8 &#8608; Texture size in pixels (note that you cannot use rectangular shape of textures – only quadractics: 32x32; 64x64; 128x128; 256x256; 512x512; 1024x1024; 2048x2048; 4096x4096 are accepted)</p>
+					<p class="jkl">9 &#8608; Buton to resize canvases (be aware that your website will change it’s appearance especially if upsizing above 1024, what is more if you write incorrect value popup will occure)</p>
+					<p class="jkl">10 &#8608; Copy URL from 1st to all of the URL forms (if You are planing to give links to more than one and less than 4 images always remember to put links to all forms else it wouldn’t work)</p>
+				</div>
+				<div id="clear1"></div>
+			</div>
+			
+			<div id="sec3">
+				<img class="img" src="img4.png">
+				<div id="img1_div">
+					<p class="jkl">Both AAA and BBB must be links to images that are able to be loaded (whether image are still in loading state it’s impossible to spawn any of them, so be aware that ALL of the images must be loaded to perform spawning).</p>
+					<p class="jkl">11 &#8608; Load new image/images from links (could be both web or local address – when local some browsers could raise en error – then check your browser settings)</p>
+					<p class="jkl">12 &#8608; Form to give information how many images could be spawned (if nr. = 0 than only first image is taken under consideration if nr.=1 than 50% of samples would be first image and the other 50% second image)</p>
+					<p class="jkl">13 &#8608; Forms to put URL address (necessary to load images)</p>
+					<p class="jkl">14 &#8608; Forms to put values describing how to spawn images (see table below &#8609; )</p>
+				</div>
+				<div id="clear1"></div>
+			</div>
+			
+			<div id="sec4">
+				<div id="tab_img5"><img class="img" src="img5.png"></div>
+				<div id="clear1"></div>
+			</div>
+			
+			<div id="sec5">
+				<div id="tab_img5">
+					<h3 id="title_img5">RandTextureGen short video tutorial</h3>
+					<iframe id="video_sec5" width="560" height="315" src="https://www.youtube.com/embed/FGTp-B9btww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div id="clear1"></div>
+			</div>
+			
+		</div>
+		<div id="footer">
+			<p class="footer_text_a">This website is devoted to computer graphics, in particular to images and textures.</p> <p class="footer_text_b">The purpose of this web application is to deliver it free of charge the possibility of obtaining textures from any photo.</p>
+		</div>
+	</div>
+</body>
