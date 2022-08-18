@@ -242,7 +242,7 @@
 	  }
 	  
 	  function sp(){
-	  amount = document.getElementById("quantity").value;
+	  amount = parseInt(document.getElementById("quantity").value);
 	  rotmin = parseFloat(document.getElementById("RMin").value);
 	  rotmax = parseFloat(document.getElementById("RMax").value);
 	  Ymin = parseFloat(document.getElementById("YMin").value);
@@ -352,7 +352,7 @@
 	  }
 	  
 	  function resize(){
-	  PixSize = document.getElementById("texturesize").value
+	  PixSize = parseInt(document.getElementById("texturesize").value);
 
 		if (PixSize == 32){
 		ResStat();
