@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<head>
+	<title>App</title>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="smooth texture, fine texture, graphic texture, free seamless textures,
+				       tekstury bezszwowe, tekstury blender, tekstury 2d, tekstury free, tekstury za darmo,
+				       tekstury render, tekstury zdjęcia, tekstury w blenderze, tekstury rodzaje,
+				       tekstury znaczenie, tekstury proceduralne, tekstury materiałów, tekstura informatyka,
+				       tekstura 128x128, tekstury grafika, texture pack, tekstury wysokiej rozdzielczości, textures tutorial,
+				       unrepetitive texture, RandTextureGen, Rand Texture Gen, Random Texture Generator">
+	<meta name="description" content="Create seamless unrepetitive texture from scratch. 
+					  Use just fragmet of your photo to processs it to good looking texture, licensed under creative commons CC BY.">
+	<style>
+		body{background-color:#26734d;font-family:Arial;}
+		#container{width:1600px;height:2730px;background-color:#40bf80;margin-left:auto;margin-right:auto;margin-top:2%;margin-bottom:2%;border-radius:20px;}
+		#header{width:96%;height:200px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:30px;}
+		#top{width:100%;height:90px;text-align:center;line-height:90px;color:#26734d;}
+		#menu{background-color:#40bf80;width:96%;height:80px;border:6px solid #26734d;border-radius:20px;margin-left:auto;margin-right:auto;}
+		#menu ul li a{display:block;text-decoration:none;color:#26734d;font-size:24px;position:relative;top:10px;}
+		#menu ul li{float:left;line-height:43px;margin-left:12px;list-style-type:none;}
+		.list{background-color:#8cd9b3;border-radius:10px;width:346px;height:60px;position:relative;top:-6px;left:-26px;}
+		.list:hover{background-color:#66ffb5;}
+		#a{position:relative;left:130px;}
+		#b{position:relative;left:140px;}
+		#c{position:relative;left:110px;}
+		#d{position:relative;left:100px;}
+		
+		#content{width:96%;height:2300px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:70px;}
+		
+		#canvas_a{height:1024px;width:1024px;position:relative;top:20px;left:20px; background-image:url("transparent.jpg");float:left;}
+		
+		#canvas_b{height:384px;width:384px;position:relative;top:660px;left:40px; background-image:url("transparent.jpg");float:left}
+		#clear_a{clear:both;}
+		
+		#button_a{border:4px solid #26734d;border-radius:10px;background-color:#40bf80;position:relative;top:40px;left:40px;width:890px;height:70px;}
+		.but_a{height:50px;width:170px;position:relative;left:10px;top:10px;font-size:20px;font-family:Arial;color:#26734d;}
+		
+		#form_a{float:left;border:4px solid #26734d;border-radius:10px;background-color:#40bf80;position:relative;top:80px;left:40px;width:750px;height:1040px;color:white;}
+		.label_a{position:relative;left:20px;}
+		
+		#kutacz{position:relative;top:50px;}
+		#degrengolada{margin-left:430px;position:relative;top:-700px;}
+		#preset{width:300px;height:40px;font-size:16px;font-family:Arial;color:#26734d;margin-top:70px;}
+		#gejowisko{float:left;position:relative;top:40px;}
+		#settings{float:left;width:300px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;top:52px;}
+		#pedalstwo{clear:both;}
+		.lab_font{float:left;font-size:16px;position:relative;top:-6px;}
+		#quantity{float:left;width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:10px;}
+		#RMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:19px;}
+		#RMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:15px;}
+		#XMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:18px;}
+		#XMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:13px;}
+		#YMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:17px;}
+		#YMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:12px;}
+		#SMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:48px;}
+		#SMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:42px;}
+		
+		#lytkadowruks{clear:both;}
+		#dildo_dikus{position:relative;top:60px;}
+		#xoniwruk{position:relative;top:160px;}
+		#lowruks{position:relative;left:20px;top:80px;}
+		#disposition{width:208px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:22px;}
+		#texturesize{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;}
+		#but_b{position:relative;left:610px;top:-36px;}
+		#resize{height:38px;width:100px;font-size:16px;font-family:Arial;color:#26734d;}
+		#Alpha{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:143px;}
+		#quantityAdd{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:20px;}
+		
+		#form_b{float:left;border:4px solid #26734d;border-radius:10px;background-color:#40bf80;position:relative;top:80px;left:80px;width:650px;height:1040px;color:white;}
+		#chrzaszcz_pedal{position:relative;top:-340px;}
+		#homepage, #homepage2, #homepage3, #homepage4, #homepage5, #homepage6, #homepage7, #homepage8{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:60px;top:-5px;}
+		#bcgAddress{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:60px;top:-5px;}
+		#BcgFrg {width:16px;height:16px;font-size:12px;}
+		#pedal{float:left;}
+		#cwel{position:relative;left:80px;float:left;}
+		#gej{clear:both;}
+		#URLnumber{position:relative;left:370px;top:-5px;;width:200px;height:30px; font-size:16px;}
+		#v{position:relative;top:-50px;}
+		#x{position:relative;top:-90px;}
+		#y{position:relative;top:-130px;}
+		#z{position:relative;top:-170px;}
+		#vv{position:relative;top:-210px;}
+		#xx{position:relative;top:-250px;}
+		#yy{position:relative;top:-290px;}
+		#zz{position:relative;top:-330px;}
+		
+		#xyz{position:relative;top:-380px;}
+		#zyx{position:relative;top:-257px; left:20px;}
+		#reuse{width:300px;height:40px;font-size:16px;font-family:Arial;color:#26734d;}
+		#abc{position:relative;left:340px;top:-297px;}
+		#setURL{width:290px;height:40px;font-size:16px;font-family:Arial;color:#26734d;}
+		
+		#myCanvas{position:relative;top:-1030px;}
+		
+		#footer{width:96%;height:100px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:90px;}
+		.footer_text_a{color:#26734d;font-size:18px; text-align: center; vertical-align: middle; position:relative; top:15%;}
+		.footer_text_b{color:#26734d;font-size:18px; text-align: center; vertical-align: middle; position:relative; top:15%;}
+		
+		
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="top"> <h1>RandTextureGen - App</h1> </div>
+			<div id="menu">
+				<ul>
+					<li> <div class="list"><a id="a" href="index.html">HOME</a></div> </li>
+					<li> <div class="list"><a id="b" href="#">APP</a></div> </li>
+					<li> <div class="list"><a id="c" href="tutorial.html">TUTORIAL</a></div> </li>
+					<li> <div class="list"><a id="d" href="terms.html">COPYRIGHT</a></div> </li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div id="canvas_a">
+				<canvas id="Background" width="1024" height="1024" style="border:1px solid #000000;"></canvas>							
+				<canvas id="myCanvas" width="1024" height="1024" style="border:1px solid #000000;"></canvas>
+
+			</div>
+			<div id="canvas_b"><canvas id="Look" width="384" height="384" style="border:1px solid #000000;"></canvas></div>
+			<div id="clear_a"></div>
+			<br>
+			<div id="form">
+				<div id="button_a">
+					<input type="button" id="spawn" class="but_a" onclick="sp()" value="Spawn">
+					<input type="button" id="clear" class="but_a" onclick="clean()" value="Clear">
+					<input type="button" id="see" class="but_a" onclick="seen()" value="See Result">
+					<input type="button" id="background_clear" class="but_a" onclick="bClean()" value="Clear background">
+					<input type="button" id="background_load" class="but_a" onclick="bcg()" value="Load background">
+				</div>
+			</div>
+				<br>
+				<div id="form_a">
+					<div id="kutacz">
+						<div class="label_a"><label for="quantity"> <p class="lab_font">Amount of samples:</p> <input type="number" id="quantity" placeholder="between 1 and 512" name="quantity" min="1" max="512"> </label></div>
+						<div id="lytkadowruks"></div>
+						<br>
+						<div class="label_a"><label for="RMin"> <p class="lab_font" id = "l1">Minimal Z rotation:</p> <input type="number" placeholder="between -360 and 360" id="RMin" name="RMin" min="-360" max="360"> </label></div>
+						<br>
+						<div class="label_a"><label for="RMax"> <p class="lab_font" id = "l2">Maximal Z rotation:</p> <input type="number" placeholder="between -360 and 360" id="RMax" name="RMax" min="-360" max="360"> </label></div>
+						<br>
+						<div class="label_a"><label for="XMin"> <p class="lab_font" id = "l3">Minimal X position:</p> <input type="number" placeholder="between 0 and 1024" id="XMin" name="XMin" min="0" max="1024"> </label></div>
+						<br>
+						<div class="label_a"><label for="XMax"> <p class="lab_font" id = "l4">Maximal X position:</p> <input type="number" placeholder="between 0 and 1024" id="XMax" name="XMax" min="0" max="1024"> </label></div>
+						<br>
+						<div class="label_a"><label for="YMin"> <p class="lab_font" id = "l5">Minimal Y position:</p> <input type="number" placeholder="between 0 and 1024" id="YMin" name="YMin" min="0" max="1024"> </label></div>
+						<br>
+						<div class="label_a"><label for="YMax"> <p class="lab_font" id = "l6">Maximal Y position:</p> <input type="number" placeholder="between 0 and 1024" id="YMax" name="YMax" min="0" max="1024"> </label></div>
+						<br>
+						<div class="label_a"><label for="SMin"> <p class="lab_font" id = "l7">Minimal scale:</p> <input type="number" placeholder="between 0.1 and 1.5" id="SMin" name="SMin" min="0" max="1024" step="0.1"> </label></div>
+						<br>
+						<div class="label_a"><label for="SMax"> <p class="lab_font" id = "l8">Maximal scale:</p> <input type="number" placeholder="between 0.1 and 1.5" id="SMax" name="SMax" min="0" max="1024" step="0.1"> </label></div>
+						<br>
+						<div id="dildo_dikus">
+							<div class="label_a"><label for="Alpha"> GlobalAlpha: <input type="number" placeholder="between 0 and 1" id="Alpha" name="Alpha" min="0" max="1" step="0.1"> </label></div>
+							<br>
+							<div class="label_a"><label for="quantityAdd"> Additional amount of samples: <input type="number" placeholder="between 0 and 100" id="quantityAdd" name="quantityAdd" min="0" max="100" step="1"> </label></div>
+						</div>
+						<div id="lowruks">
+							<label for="disposition">Choose image placment type:
+								<select id="disposition" name="disposition">
+									<option value="0">FullRandom</option>
+									<option value="1">CellRandom</option>
+								</select>	
+							</label>
+						</div>	
+						<div id="xoniwruk">
+							<div class="label_a"><label for="texturesize"> texture size in px (accepted only the power of 2): <input type="number" placeholder="between 32 and 4096" id="texturesize" name="texturesize" min="16" max="4096"> </label></div>
+							<div id="but_b"><input type="button" id="resize" onclick="resize()" value="Resize"></div>
+						</div>	
+					</div>
+				
+					<div id="degrengolada">
+						<label for="settings">
+							<p id="gejowisko">Choose a preset: &nbsp;</p>
+							<select id="settings" name="settings">
+								<option value="0">Standard</option>
+								<option value="1">Bumps/shadows</option>
+								<option value="2">Dusting</option>
+								<option value="3">Image piece</option>
+								<option value="4">Resize image</option>
+								<option value="5">Displacement => samples amount</option>					
+							</select>
+							<div id="zlot_pedalow"><input type="button" id="preset" onclick="preset()" value="Choose preset from list"></div>
+							<div id="pedalstwo"></div>
+						</label>
+					</div>
+				</div>
+			<div id="form_b">
+				<p style="position:relative;left:20px;top:40px;">URL image's addresses:</p>
+				<br><br><br>
+				<div id="v">
+					<p style="position:relative;left:20px;top:40px;">1st:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage" name="homepage">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; = '0' value</p>
+					</div>
+				</div>
+				<div id="x">
+					<p style="position:relative;left:20px;top:40px;">2nd:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage2" name="homepage2">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '1' value</p>
+					</div>
+				</div>	
+				<div id="y">
+					<p style="position:relative;left:20px;top:40px;">3rd:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage3" name="homepage3">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '2' value</p>
+					</div>
+				</div>	
+				<div id="z">
+					<p style="position:relative;left:20px;top:40px;">4th:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage4" name="homepage4">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '3' value</p>
+					</div>
+				</div>	
+				<div id="vv">
+					<p style="position:relative;left:20px;top:40px;">5th:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage5" name="homepage5">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '4' value</p>
+					</div>
+				</div>	
+				<div id="xx">
+					<p style="position:relative;left:20px;top:40px;">6th:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage6" name="homepage6">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '5' value</p>
+					</div>
+				</div>	
+				<div id="yy">
+					<p style="position:relative;left:20px;top:40px;">7th:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage7" name="homepage7">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '6' value</p>
+					</div>
+				</div>	
+				<div id="zz">
+					<p style="position:relative;left:20px;top:40px;">8th:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage8" name="homepage8">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '7' value</p>
+					</div>					
+				</div>
+				<div id="xyz">
+					<p style="position:relative;left:20px;top:40px;">Number of active image's sources (minus one):</p>
+					<div class="label_b"><input type="number" placeholder="0-7" id="URLnumber" name="URLnumber" min="0" max="7" step="1"></div>
+				</div>			
+				<div id="chrzaszcz_pedal">
+					<label for="BcgFrg">
+						<p style="margin-left:20px;">URL background image's address:</p>
+						<div id="pedal"><input type="url" placeholder="http://..." id="bcgAddress" name="bcgAddress"></div>
+						<div id="cwel"> <input type="checkbox" id="BcgFrg" name="BcgFrg">&nbsp;&nbsp;&nbsp;If checked put on foreground,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else on background</div>
+						<div id="gej"></div> 
+					</label>
+				</div>
+					
+				
+				<div id="zyx">
+					<input type="button" id="reuse" onclick="reuse()" value="Use url from first form in all forms">
+				</div>
+				<div id="abc"> 
+					<input type="button" id="setURL" onclick="seturl()" value="Load new image">
+				</div>	
+			</div>
+		</div>
+		<div id="footer">
+			<p id = "Foo1" class="footer_text_a">This website is devoted to computer graphics, in particular to images and textures.</p> <p id = "Foo2" class="footer_text_b">The purpose of this web application is to deliver it free of charge the possibility of obtaining textures from any photo.</p>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+      var myCanvas = document.getElementById("myCanvas"); //create main canvas
+      var myContext = myCanvas.getContext("2d");
+	  
+	  var OutlookCanvas = document.getElementById("Look"); //create visor canvas
+      var OutlookContext = OutlookCanvas.getContext("2d");
+	  
+	  var myBackground = document.getElementById("Background"); //create cackground canvas behind main canvas
+      var BackgroundContext = myBackground.getContext("2d");
+	  // global delaration
+	  var rotmin = 0;
+	  var rotmax = 0;
+	  var Xmin = 0;
+	  var YYmin = 0;
+	  var amount = 0;
+	  var scalemin = 1;
+	  var scalemax = 1;
+	  var Xmax = 0;
+	  var Ymax = 0;
+	  
+	  var BCGready = false;
+	  var ready = false;
+	  var ready2 = false;
+	  var ready3 = false;
+	  var ready4 = false;
+	  var ready5 = false;
+	  var ready6 = false;
+	  var ready7 = false;
+	  var ready8 = false;
+	  
+	  var URI = "";
+	  var URI2 = "";
+	  var URI3 = "";
+	  var URI4 = "";
+	  var URI5 = "";
+	  var URI6 = "";
+	  var URI7 = "";
+	  var URI8 = "";	  
+	  var URIbcg = "";
+
+	  var uriNum = 0;
+	  var PixSize = 1024;
+	  var lastPix = 1024;
+	  var lttp = 1.0;
+      
+
+	  var myBCG=new Image();// define background image
+	  
+      var myImage=new Image();
+	  var myImage2=new Image();
+      var myImage3=new Image();
+	  var myImage4=new Image();
+      var myImage5=new Image();
+	  var myImage6=new Image();
+      var myImage7=new Image();
+	  var myImage8=new Image();	  
+
+      myImage.src="https://cdn.pixabay.com/photo/2017/02/10/14/05/heart-2055203__340.png";
+
+	myBCG.onload = function () {
+	BCGready = true;
+	}
+
+	myImage.onload = function () {
+	ready = true;
+	}
+	myImage2.onload = function () {
+	ready2 = true;
+	}
+	myImage3.onload = function () {
+	ready3 = true;
+	}
+	myImage4.onload = function () {
+	ready4 = true;
+	}
+
+	myImage5.onload = function () {
+	ready5 = true;
+	}
+	myImage6.onload = function () {
+	ready6 = true;
+	}
+	myImage7.onload = function () {
+	ready7 = true;
+	}
+	myImage8.onload = function () {
+	ready8 = true;
+	}	
+
+	  function serial(){ // totally random images displacement
+	  for (let i = 0; i < amount; i++) {
+	  	let RandRot = Math.random() * (rotmax - rotmin) + rotmin;
+		let RandX = Math.abs(Math.random() * (Xmax - Xmin) + Xmin);
+		let RandY = Math.abs(Math.random() * (Ymax - Ymin) + Ymin);
+		let RR = Math.random() * (scalemax - scalemin) + scalemin;
+		let RandS = Math.abs(RR);
+		let IMG = Math.round(Math.random() *uriNum);
+			spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,-PixSize);
+		spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,0);
+		spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,0,-PixSize);
+		spawn(RandX,RandY,RandRot,RandS,IMG,0,0);
+		spawn(RandX,RandY,RandRot,RandS,IMG,0,PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,-PixSize);
+		spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,0);
+		spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,PixSize);
+		}
+	  }
+	  
+	  function serialCell(){ // semi random images displacement
+	  let XX = (Xmax - Xmin)/amount;
+	  let YY = (Ymax - Ymin)/amount;  
+	  let quant  = parseInt(document.getElementById("quantityAdd").value);
+	  for (let k = 0; k < quant; k++) {
+	  for (let i = 0; i < amount; i++) {
+		for (let j = 0; j < amount; j++) {
+			let RandRot = Math.random() * (rotmax - rotmin) + rotmin;
+			
+
+			
+			let RandX = Math.abs(Math.random() * XX + i * XX);
+			let RandY = Math.abs(Math.random() * YY + j * YY);
+			
+			let RR = Math.random() * (scalemax - scalemin) + scalemin;
+			let RandS = Math.abs(RR);
+			let IMG = Math.round(Math.random() *uriNum);
+				spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,-PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,0);
+			spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,PixSize);
+				spawn(RandX,RandY,RandRot,RandS,IMG,0,-PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,0,0);
+			spawn(RandX,RandY,RandRot,RandS,IMG,0,PixSize);
+				spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,-PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,0);
+			spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,PixSize);
+			}
+		  }
+		}
+	  }	  
+	  
+	  
+	  function spawn(x,y,rot,scale,image,Ax,Ay){
+	  myContext.scale(scale,scale);
+	  myContext.translate((x+Ax)/scale,(y+Ay)/scale);
+	  myContext.rotate(rot * Math.PI / 180);
+	  select(image);
+
+	  }
+	  
+	  function sp(){
+	  myContext.globalAlpha = parseFloat(document.getElementById("Alpha").value); // set global alpha before spawn serial
+	  amount = parseInt(document.getElementById("quantity").value);
+	  rotmin = parseFloat(document.getElementById("RMin").value);
+	  rotmax = parseFloat(document.getElementById("RMax").value);
+	  Ymin = parseFloat(document.getElementById("YMin").value);
+	  Ymax = parseFloat(document.getElementById("YMax").value);
+	  Xmin = parseFloat(document.getElementById("XMin").value);
+	  Xmax = parseFloat(document.getElementById("XMax").value);	  
+	  scalemin = parseFloat(document.getElementById("SMin").value);
+	  scalemax = parseFloat(document.getElementById("SMax").value);
+	  let r = parseInt(document.getElementById("disposition").value);
+		if (ready == true && ready2 == true && ready3 == true && ready4 == true
+		&& ready5 == true && ready6 == true && ready7 == true && ready8 == true) {
+
+			switch (r) {
+				case 0:
+				serial();
+				break;
+				case 1:
+				serialCell();
+				break;
+			}
+		}
+	  }
+	  
+	  
+	  function clean(){
+	  myContext.clearRect(0, 0, PixSize, PixSize);
+	  }
+	  
+	  function bClean(){
+	  BackgroundContext.clearRect(0, 0, PixSize, PixSize);
+	  }
+	  
+
+	  
+	  function bcg(){ // draw on background canvas
+	  myContext.globalAlpha = 1;
+	  let typek = document.getElementById("BcgFrg").checked; // get boolen value whteher spawn on background - false or foreground - true
+		if (typek == false && BCGready == true){
+		BackgroundContext.drawImage(myBCG,0,0);
+		}
+		else if (typek == true && BCGready == true){
+		myContext.drawImage(myBCG,0,0);
+		}
+	  }
+	  
+	  
+	  function seturl(){
+	  URI = document.getElementById("homepage").value;
+	  myImage.src = URI;
+	  URI2 = document.getElementById("homepage2").value;
+	  myImage2.src = URI2;
+	  URI3 = document.getElementById("homepage3").value;
+	  myImage3.src = URI3;
+	  URI4 = document.getElementById("homepage4").value;
+	  myImage4.src = URI4;
+	  URI5 = document.getElementById("homepage5").value;
+	  myImage5.src = URI5;
+	  URI6 = document.getElementById("homepage6").value;
+	  myImage6.src = URI6;
+	  URI7 = document.getElementById("homepage7").value;
+	  myImage7.src = URI7;
+	  URI8 = document.getElementById("homepage8").value;
+	  myImage8.src = URI8;	  
+	  
+	  URIbcg = document.getElementById("bcgAddress").value; //get address of background image
+	  myBCG.src = URIbcg;	  // initiate background image loading
+	  
+	  ready = false;
+	  ready2 = false;
+	  ready3 = false;
+	  ready4 = false;
+	  ready5 = false;
+	  ready6 = false;
+	  ready7 = false;
+	  ready8 = false;	  
+	  BCGready = false;
+	  uriNum = parseInt(document.getElementById("URLnumber").value);
+	  }
+	  
+	  function seen() {
+	    OutlookContext.setTransform(1, 0, 0, 1, 0, 0);
+	    OutlookContext.clearRect(0, 0, PixSize/8*3, PixSize/8*3);
+		OutlookContext.setTransform(0.125, 0, 0, 0.125, 0, 0);
+		OutlookContext.drawImage(myCanvas,0,0);
+		OutlookContext.drawImage(myCanvas,PixSize,0);
+		OutlookContext.drawImage(myCanvas,PixSize*2,0);
+		OutlookContext.drawImage(myCanvas,0,PixSize);
+		OutlookContext.drawImage(myCanvas,0,PixSize*2);
+		OutlookContext.drawImage(myCanvas,PixSize,PixSize);
+		OutlookContext.drawImage(myCanvas,PixSize*2,PixSize);
+		OutlookContext.drawImage(myCanvas,PixSize,PixSize*2);
+		OutlookContext.drawImage(myCanvas,PixSize*2,PixSize*2);
+	  }
+	  
+	  
+	  
+	  
+	  function select(x){
+		
+		switch (x) {
+		case 0:
+	  myContext.translate(-myImage.width/2, -myImage.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		case 1:
+	  myContext.translate(-myImage2.width/2, -myImage2.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage2,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		case 2:
+	  myContext.translate(-myImage3.width/2, -myImage3.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage3,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		case 3:
+	  myContext.translate(-myImage4.width/2, -myImage4.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage4,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+			
+		case 4:
+	  myContext.translate(-myImage5.width/2, -myImage5.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage5,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+			
+		case 5:
+	  myContext.translate(-myImage6.width/2, -myImage6.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage6,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+
+		case 6:
+	  myContext.translate(-myImage7.width/2, -myImage7.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage7,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+
+		case 7:
+	  myContext.translate(-myImage8.width/2, -myImage8.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage8,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;			
+		}
+	  }
+	  
+	  
+	  function preset(){ // loads presets
+	  let r = parseInt(document.getElementById("settings").value);
+
+	  switch (r) {
+	  case 0://standard
+		  document.getElementById("quantity").value = 500;
+		  document.getElementById("quantityAdd").value = 1;		  
+		  document.getElementById("RMin").value = 0;
+		  document.getElementById("RMax").value = 360;
+		  document.getElementById("XMin").value = 0;
+		  document.getElementById("XMax").value = PixSize;
+		  document.getElementById("YMin").value = 0;
+		  document.getElementById("YMax").value = PixSize;
+		  document.getElementById("SMin").value = 0.5;
+		  document.getElementById("SMax").value = 1;	  
+		  document.getElementById("URLnumber").value = 0;
+		  document.getElementById("Alpha").value = 1;
+	  break;
+	  case 1://bupms&shadows
+		  document.getElementById("quantity").value = 500;
+		  document.getElementById("quantityAdd").value = 1;
+		  document.getElementById("RMin").value = 0;
+		  document.getElementById("RMax").value = 45;
+		  document.getElementById("XMin").value = 0;
+		  document.getElementById("XMax").value = PixSize;
+		  document.getElementById("YMin").value = 0;
+		  document.getElementById("YMax").value = PixSize;
+		  document.getElementById("SMin").value = 0.9;
+		  document.getElementById("SMax").value = 1.1;	  
+		  document.getElementById("URLnumber").value = 0;
+		  document.getElementById("Alpha").value = 1;
+	  break;
+	  case 2://dusting
+		  document.getElementById("quantity").value = 100;
+		  document.getElementById("quantityAdd").value = 1;		  
+		  document.getElementById("RMin").value = 0;
+		  document.getElementById("RMax").value = 360;
+		  document.getElementById("XMin").value = 0;
+		  document.getElementById("XMax").value = PixSize;
+		  document.getElementById("YMin").value = 0;
+		  document.getElementById("YMax").value = PixSize;
+		  document.getElementById("SMin").value = 0.3;
+		  document.getElementById("SMax").value = 1.5;	  
+		  document.getElementById("URLnumber").value = 0;
+		  document.getElementById("Alpha").value = 0.2;
+	  break;
+	  case 3://image piece
+		  document.getElementById("quantity").value = 10;
+		  document.getElementById("quantityAdd").value = 1;		  
+		  document.getElementById("RMin").value = 0;
+		  document.getElementById("RMax").value = 360;
+		  document.getElementById("XMin").value = PixSize*0.25;
+		  document.getElementById("XMax").value = PixSize*0.75;
+		  document.getElementById("YMin").value = PixSize*0.25;
+		  document.getElementById("YMax").value = PixSize*0.75;
+		  document.getElementById("SMin").value = 0.6;
+		  document.getElementById("SMax").value = 0.8;	  
+		  document.getElementById("URLnumber").value = 0;
+		  document.getElementById("Alpha").value = 1;
+	  break;
+	  case 4://image rescale
+		  document.getElementById("XMin").value = parseFloat(document.getElementById("XMin").value)/lttp;
+		  document.getElementById("XMax").value = parseFloat(document.getElementById("XMax").value)/lttp;
+		  document.getElementById("YMin").value = parseFloat(document.getElementById("YMin").value)/lttp;
+		  document.getElementById("YMax").value = parseFloat(document.getElementById("YMax").value)/lttp;
+		  document.getElementById("SMin").value = parseFloat(document.getElementById("SMin").value)/lttp;
+		  document.getElementById("SMax").value = parseFloat(document.getElementById("SMax").value)/lttp;	  
+	  break;
+	  case 5://displacement => amount
+		  let r = parseInt(document.getElementById("disposition").value);
+		  if (r==0){
+		  document.getElementById("disposition").value = 1;
+		  document.getElementById("quantity").value = parseInt(Math.pow(document.getElementById("quantity").value,0.5));
+			}
+		  else{
+		  document.getElementById("disposition").value = 0;
+		  document.getElementById("quantity").value = parseInt(Math.pow(document.getElementById("quantity").value,2));		  
+		  }
+	  break;		  
+	  }
+	  }
+	
+	  function reuse(){
+	  document.getElementById("homepage2").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage3").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage4").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage5").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage6").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage7").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage8").value = document.getElementById("homepage").value;	  
+	  }
+	  
+	  function resize(){
+	  PixSize = parseInt(document.getElementById("texturesize").value);
+	  lttp = lastPix/PixSize;
+	  lastPix = PixSize;
+
+		if (PixSize == 32){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "32px";
+		document.getElementById("canvas_a").style.height = "32px";
+		document.getElementById("canvas_b").style.width = "12px";
+		document.getElementById("canvas_b").style.height = "12px";	
+		document.getElementById("canvas_b").style.top = "39px";
+		document.getElementById("myCanvas").style.top = "-38px";
+		
+		}
+		else if (PixSize == 64){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "64px";
+		document.getElementById("canvas_a").style.height = "64px";
+		document.getElementById("canvas_b").style.width = "24px";
+		document.getElementById("canvas_b").style.height = "24px";
+		document.getElementById("canvas_b").style.top = "60px";
+		document.getElementById("myCanvas").style.top = "-70px";		
+		}
+		else if (PixSize == 128){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "128px";
+		document.getElementById("canvas_a").style.height = "128px";
+		document.getElementById("canvas_b").style.width = "48px";
+		document.getElementById("canvas_b").style.height = "48px";
+		document.getElementById("canvas_b").style.top = "100px";
+		document.getElementById("myCanvas").style.top = "-134px";			
+		}	
+		else if (PixSize == 256){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "256px";
+		document.getElementById("canvas_a").style.height = "256px";
+		document.getElementById("canvas_b").style.width = "96px";
+		document.getElementById("canvas_b").style.height = "96px";
+		document.getElementById("canvas_b").style.top = "180px";
+		document.getElementById("myCanvas").style.top = "-262px";			
+		}	
+		else if (PixSize == 512){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "512px";
+		document.getElementById("canvas_a").style.height = "512px";
+		document.getElementById("canvas_b").style.width = "192px";
+		document.getElementById("canvas_b").style.height = "192px";	
+		document.getElementById("canvas_b").style.top = "340px";
+		document.getElementById("myCanvas").style.top = "-517.5px";			
+		
+		}	
+		else if (PixSize == 1024){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "1024px";
+		document.getElementById("canvas_a").style.height = "1024px";
+		document.getElementById("canvas_b").style.width = "384px";
+		document.getElementById("canvas_b").style.height = "384px";	
+		document.getElementById("canvas_b").style.top = "660px";
+		document.getElementById("myCanvas").style.top = "-1030px";			
+		}	
+		else if (PixSize == 2048){
+		ResStat();
+		document.getElementById("canvas_a").style.width = "2048px";
+		document.getElementById("canvas_a").style.height = "2048px";
+		document.getElementById("canvas_b").style.width = "768px";
+		document.getElementById("canvas_b").style.height = "768px";	
+		document.getElementById("canvas_b").style.top = "1300px";
+		document.getElementById("myCanvas").style.top = "-2053.5px";			
+		
+		document.getElementById("canvas_b").style.left = "80px";
+		document.getElementById("container").style.width = "3200px";
+		document.getElementById("container").style.height = "4260px";
+		document.getElementById("content").style.height = "3700px";
+		document.getElementById("footer").style.height = "200px";
+		document.getElementById("button_a").style.height = "140px";
+		document.getElementById("button_a").style.width = "1780px";
+		document.getElementById("form_a").style.height = "1300px";
+		document.getElementById("form_a").style.width = "1500px";	
+		document.getElementById("form_b").style.height = "1300px";
+		document.getElementById("form_b").style.width = "1300px";	
+		document.getElementById("spawn").style.height = "100px";	
+		document.getElementById("spawn").style.width = "340px";	
+		document.getElementById("clear").style.height = "100px";	
+		document.getElementById("clear").style.width = "340px";	
+		document.getElementById("see").style.height = "100px";	
+		document.getElementById("see").style.width = "340px";
+		document.getElementById("background_clear").style.height = "100px";
+		document.getElementById("background_clear").style.width = "340px";
+		document.getElementById("background_load").style.height = "100px";	
+		document.getElementById("background_load").style.width = "340px";			
+		
+		document.getElementById("spawn").style.fontSize = "40px";	
+		document.getElementById("clear").style.fontSize = "40px";	
+		document.getElementById("see").style.fontSize = "40px";
+		document.getElementById("background_clear").style.fontSize = "40px";	
+		document.getElementById("background_load").style.fontSize = "40px";
+		document.getElementById("Foo1").style.fontSize = "36px";
+		document.getElementById("Foo2").style.fontSize = "36px";			
+		document.body.style.zoom = "50%";
+		
+	document.getElementById("quantity").style.height = "60px";	
+	document.getElementById("quantity").style.width = "400px";
+	document.getElementById("quantity").style.fontSize = "32px";
+	document.getElementById("RMin").style.height = "60px";	
+	document.getElementById("RMin").style.width = "400px";
+	document.getElementById("RMin").style.fontSize = "32px";
+	document.getElementById("RMax").style.height = "60px";	
+	document.getElementById("RMax").style.width = "400px";
+	document.getElementById("RMax").style.fontSize = "32px";
+
+	document.getElementById("XMin").style.height = "60px";	
+	document.getElementById("XMin").style.width = "400px";
+	document.getElementById("XMin").style.fontSize = "32px";
+	document.getElementById("XMax").style.height = "60px";	
+	document.getElementById("XMax").style.width = "400px";
+	document.getElementById("XMax").style.fontSize = "32px";
+	document.getElementById("YMin").style.height = "60px";	
+	document.getElementById("YMin").style.width = "400px";
+	document.getElementById("YMin").style.fontSize = "32px";
+
+	document.getElementById("YMax").style.height = "60px";	
+	document.getElementById("YMax").style.width = "400px";
+	document.getElementById("YMax").style.fontSize = "32px";
+	document.getElementById("SMin").style.height = "60px";	
+	document.getElementById("SMin").style.width = "400px";
+	document.getElementById("SMin").style.fontSize = "32px";
+	document.getElementById("SMax").style.height = "60px";	
+	document.getElementById("SMax").style.width = "400px";
+	document.getElementById("SMax").style.fontSize = "32px";
+
+	document.getElementById("l1").style.fontSize = "32px";		
+	document.getElementById("l2").style.fontSize = "32px";	
+	document.getElementById("l3").style.fontSize = "32px";	
+	document.getElementById("l4").style.fontSize = "32px";	
+	document.getElementById("l5").style.fontSize = "32px";
+	document.getElementById("l6").style.fontSize = "32px";	
+	document.getElementById("l7").style.fontSize = "32px";	
+	document.getElementById("l8").style.fontSize = "32px";
+	document.getElementById("Alpha").style.fontSize = "32px";	
+	document.getElementById("quantityAdd").style.fontSize = "32px";
+	document.getElementById("Alpha").style.height = "60px";	
+	document.getElementById("quantityAdd").style.width = "400px";
+	document.getElementById("quantityAdd").style.height = "60px";	
+	document.getElementById("Alpha").style.width = "400px";
+	document.getElementById("disposition").style.height = "60px";	
+	document.getElementById("disposition").style.width = "416px";
+	document.getElementById("disposition").style.fontSize = "32px";
+	document.getElementById("resize").style.height = "76px";	
+	document.getElementById("resize").style.width = "200px";
+	document.getElementById("resize").style.fontSize = "32px";
+	document.getElementById("settings").style.height = "60px";	
+	document.getElementById("settings").style.width = "600px";
+	document.getElementById("settings").style.fontSize = "32px";
+	document.getElementById("preset").style.height = "80px";	
+	document.getElementById("preset").style.width = "600px";
+	document.getElementById("preset").style.fontSize = "32px";
+	
+	document.getElementById("homepage").style.height = "60px";	
+	document.getElementById("homepage").style.width = "400px";
+	document.getElementById("homepage").style.fontSize = "32px";
+	document.getElementById("homepage2").style.height = "60px";	
+	document.getElementById("homepage2").style.width = "400px";
+	document.getElementById("homepage2").style.fontSize = "32px";
+	document.getElementById("homepage3").style.height = "60px";	
+	document.getElementById("homepage3").style.width = "400px";
+	document.getElementById("homepage3").style.fontSize = "32px";
+	document.getElementById("homepage4").style.height = "60px";	
+	document.getElementById("homepage4").style.width = "400px";
+	document.getElementById("homepage4").style.fontSize = "32px";
+	document.getElementById("homepage5").style.height = "60px";	
+	document.getElementById("homepage5").style.width = "400px";
+	document.getElementById("homepage5").style.fontSize = "32px";
+	document.getElementById("homepage6").style.height = "60px";	
+	document.getElementById("homepage6").style.width = "400px";
+	document.getElementById("homepage6").style.fontSize = "32px";
+	document.getElementById("homepage7").style.height = "60px";	
+	document.getElementById("homepage7").style.width = "400px";
+	document.getElementById("homepage7").style.fontSize = "32px";
+	document.getElementById("homepage8").style.height = "60px";	
+	document.getElementById("homepage8").style.width = "400px";
+	document.getElementById("homepage8").style.fontSize = "32px";	
+	
+	document.getElementById("URLnumber").style.height = "60px";	
+	document.getElementById("URLnumber").style.width = "400px";
+	document.getElementById("URLnumber").style.fontSize = "32px";
+	document.getElementById("BcgFrg").style.height = "32px";	
+	document.getElementById("BcgFrg").style.width = "32px";
+	document.getElementById("BcgFrg").style.fontSize = "24px";
+	document.getElementById("bcgAddress").style.height = "60px";	
+	document.getElementById("bcgAddress").style.width = "400px";
+	document.getElementById("bcgAddress").style.fontSize = "32px";	
+	document.getElementById("reuse").style.height = "80px";	
+	document.getElementById("reuse").style.width = "600px";
+	document.getElementById("reuse").style.fontSize = "32px";
+	document.getElementById("setURL").style.height = "80px";	
+	document.getElementById("setURL").style.width = "580px";
+	document.getElementById("setURL").style.fontSize = "32px";
+	document.getElementById("texturesize").style.height = "60px";	
+	document.getElementById("texturesize").style.width = "400px";
+	document.getElementById("texturesize").style.fontSize = "32px";		
+		}	
+		else if (PixSize == 4096){
+		ResStat();
+		document.getElementById("canvas_a").style.width = "4096px";
+		document.getElementById("canvas_a").style.height = "4096px";  
+		document.getElementById("canvas_b").style.width = "1536px";
+		document.getElementById("canvas_b").style.height = "1536px";	
+		document.getElementById("canvas_b").style.top = "2580px";
+		document.getElementById("myCanvas").style.top = "-4102px";			
+
+		document.getElementById("canvas_b").style.left = "160px";
+		document.getElementById("container").style.width = "6400px";
+		document.getElementById("container").style.height = "8020px";
+		document.getElementById("content").style.height = "7200px";
+		document.getElementById("footer").style.height = "400px";
+		document.getElementById("button_a").style.height = "280px";
+		document.getElementById("button_a").style.width = "3560px";
+		document.getElementById("form_a").style.height = "2600px";
+		document.getElementById("form_a").style.width = "3000px";	
+		document.getElementById("form_b").style.height = "2600px";
+		document.getElementById("form_b").style.width = "2600px";	
+		document.getElementById("spawn").style.height = "200px";	
+		document.getElementById("spawn").style.width = "680px";	
+		document.getElementById("clear").style.height = "200px";	
+		document.getElementById("clear").style.width = "680px";	
+		document.getElementById("see").style.height = "200px";	
+		document.getElementById("see").style.width = "680px";
+		document.getElementById("background_clear").style.height = "200px";
+		document.getElementById("background_clear").style.width = "680px";
+		document.getElementById("background_load").style.height = "200px";	
+		document.getElementById("background_load").style.width = "680px";			
+		
+		document.getElementById("spawn").style.fontSize = "80px";	
+		document.getElementById("clear").style.fontSize = "80px";	
+		document.getElementById("see").style.fontSize = "80px";
+		document.getElementById("background_clear").style.fontSize = "80px";	
+		document.getElementById("background_load").style.fontSize = "80px";
+		document.getElementById("Foo1").style.fontSize = "72px";
+		document.getElementById("Foo2").style.fontSize = "72px";			
+		document.body.style.zoom = "25%";
+		
+	document.getElementById("quantity").style.height = "120px";	
+	document.getElementById("quantity").style.width = "800px";
+	document.getElementById("quantity").style.fontSize = "64px";
+	document.getElementById("RMin").style.height = "120px";	
+	document.getElementById("RMin").style.width = "800px";
+	document.getElementById("RMin").style.fontSize = "64px";
+	document.getElementById("RMax").style.height = "120px";	
+	document.getElementById("RMax").style.width = "800px";
+	document.getElementById("RMax").style.fontSize = "64px";
+
+	document.getElementById("XMin").style.height = "120px";	
+	document.getElementById("XMin").style.width = "800px";
+	document.getElementById("XMin").style.fontSize = "64px";
+	document.getElementById("XMax").style.height = "120px";	
+	document.getElementById("XMax").style.width = "800px";
+	document.getElementById("XMax").style.fontSize = "64px";
+	document.getElementById("YMin").style.height = "120px";	
+	document.getElementById("YMin").style.width = "800px";
+	document.getElementById("YMin").style.fontSize = "64px";
+
+	document.getElementById("YMax").style.height = "120px";	
+	document.getElementById("YMax").style.width = "800px";
+	document.getElementById("YMax").style.fontSize = "64px";
+	document.getElementById("SMin").style.height = "120px";	
+	document.getElementById("SMin").style.width = "800px";
+	document.getElementById("SMin").style.fontSize = "64px";
+	document.getElementById("SMax").style.height = "120px";	
+	document.getElementById("SMax").style.width = "800px";
+	document.getElementById("SMax").style.fontSize = "64px";
+
+	document.getElementById("l1").style.fontSize = "64px";		
+	document.getElementById("l2").style.fontSize = "64px";	
+	document.getElementById("l3").style.fontSize = "64px";	
+	document.getElementById("l4").style.fontSize = "64px";	
+	document.getElementById("l5").style.fontSize = "64px";
+	document.getElementById("l6").style.fontSize = "64px";	
+	document.getElementById("l7").style.fontSize = "64px";	
+	document.getElementById("l8").style.fontSize = "64px";
+	document.getElementById("Alpha").style.fontSize = "64px";	
+	document.getElementById("quantityAdd").style.fontSize = "64px";
+	document.getElementById("Alpha").style.height = "120px";	
+	document.getElementById("quantityAdd").style.width = "800px";
+	document.getElementById("quantityAdd").style.height = "120px";	
+	document.getElementById("Alpha").style.width = "800px";
+	document.getElementById("disposition").style.height = "120px";	
+	document.getElementById("disposition").style.width = "832px";
+	document.getElementById("disposition").style.fontSize = "64px";
+	document.getElementById("resize").style.height = "152px";	
+	document.getElementById("resize").style.width = "400px";
+	document.getElementById("resize").style.fontSize = "64px";
+	document.getElementById("settings").style.height = "120px";	
+	document.getElementById("settings").style.width = "1200px";
+	document.getElementById("settings").style.fontSize = "64px";
+	document.getElementById("preset").style.height = "160px";	
+	document.getElementById("preset").style.width = "1200px";
+	document.getElementById("preset").style.fontSize = "64px";
+
+	document.getElementById("homepage").style.height = "120px";	
+	document.getElementById("homepage").style.width = "800px";
+	document.getElementById("homepage").style.fontSize = "64px";	
+	document.getElementById("homepage2").style.height = "120px";	
+	document.getElementById("homepage2").style.width = "800px";
+	document.getElementById("homepage2").style.fontSize = "64px";	
+	document.getElementById("homepage3").style.height = "120px";	
+	document.getElementById("homepage3").style.width = "800px";
+	document.getElementById("homepage3").style.fontSize = "64px";
+	document.getElementById("homepage4").style.height = "120px";	
+	document.getElementById("homepage4").style.width = "800px";
+	document.getElementById("homepage4").style.fontSize = "64px";
+	document.getElementById("homepage5").style.height = "120px";	
+	document.getElementById("homepage5").style.width = "800px";
+	document.getElementById("homepage5").style.fontSize = "64px";
+	document.getElementById("homepage6").style.height = "120px";	
+	document.getElementById("homepage6").style.width = "800px";
+	document.getElementById("homepage6").style.fontSize = "64px";
+	document.getElementById("homepage7").style.height = "120px";	
+	document.getElementById("homepage7").style.width = "800px";
+	document.getElementById("homepage7").style.fontSize = "64px";		
+	document.getElementById("homepage8").style.height = "120px";	
+	document.getElementById("homepage8").style.width = "800px";
+	document.getElementById("homepage8").style.fontSize = "64px";
+	
+	document.getElementById("URLnumber").style.height = "120px";	
+	document.getElementById("URLnumber").style.width = "800px";
+	document.getElementById("URLnumber").style.fontSize = "64px";
+	document.getElementById("BcgFrg").style.height = "64px";	
+	document.getElementById("BcgFrg").style.width = "64px";
+	document.getElementById("BcgFrg").style.fontSize = "48px";
+	document.getElementById("bcgAddress").style.height = "120px";	
+	document.getElementById("bcgAddress").style.width = "800px";
+	document.getElementById("bcgAddress").style.fontSize = "64px";	
+	document.getElementById("reuse").style.height = "160px";	
+	document.getElementById("reuse").style.width = "1200px";
+	document.getElementById("reuse").style.fontSize = "64px";
+	document.getElementById("setURL").style.height = "160px";	
+	document.getElementById("setURL").style.width = "1160px";
+	document.getElementById("setURL").style.fontSize = "64px";
+	document.getElementById("texturesize").style.height = "120px";	
+	document.getElementById("texturesize").style.width = "800px";
+	document.getElementById("texturesize").style.fontSize = "64px";		
+		}			
+		else {
+		alert("incorrect value: Texture size could be only power of 2 and >= 32 or <=4096");
+		}
+		
+	  }
+	
+	function ResStat(){
+		alert("correct");
+	  myCanvas.width = PixSize; 
+      myCanvas.height = PixSize; 
+	  OutlookCanvas.width = PixSize/8*3;
+	  OutlookCanvas.height = PixSize/8*3;
+	  myBackground.width = PixSize;
+	  myBackground.height = PixSize;
+	}
+	
+	function DefLayout(){
+	document.getElementById("canvas_b").style.left = "40px";
+	document.getElementById("container").style.width = "1600px";
+	document.getElementById("container").style.height = "2730px"; 	
+	document.getElementById("content").style.height = "2300px";
+	document.getElementById("footer").style.height = "100px";
+	document.getElementById("button_a").style.height = "70px";
+	document.getElementById("button_a").style.width = "890px";
+	document.getElementById("form_a").style.height = "1040px";
+	document.getElementById("form_a").style.width = "750px";	
+	document.getElementById("form_b").style.height = "1040px";
+	document.getElementById("form_b").style.width = "650px";	
+	document.getElementById("spawn").style.height = "50px";	
+	document.getElementById("spawn").style.width = "170px";	
+	document.getElementById("clear").style.height = "50px";	
+	document.getElementById("clear").style.width = "170px";	
+	document.getElementById("see").style.height = "50px";	
+	document.getElementById("see").style.width = "170px";
+	document.getElementById("background_clear").style.height = "50px";
+	document.getElementById("background_clear").style.width = "170px";
+	document.getElementById("background_load").style.height = "50px";	
+	document.getElementById("background_load").style.width = "170px";		
+
+	document.getElementById("spawn").style.fontSize = "20px";	
+	document.getElementById("clear").style.fontSize = "20px";	
+	document.getElementById("see").style.fontSize = "20px";
+	document.getElementById("background_clear").style.fontSize = "20px";	
+	document.getElementById("background_load").style.fontSize = "20px";
+	document.getElementById("Foo1").style.fontSize = "18px";
+	document.getElementById("Foo2").style.fontSize = "18px";	
+	document.body.style.zoom = "100%";
+	
+	document.getElementById("quantity").style.height = "30px";	
+	document.getElementById("quantity").style.width = "200px";
+	document.getElementById("quantity").style.fontSize = "16px";
+	document.getElementById("RMin").style.height = "30px";	
+	document.getElementById("RMin").style.width = "200px";
+	document.getElementById("RMin").style.fontSize = "16px";
+	document.getElementById("RMax").style.height = "30px";	
+	document.getElementById("RMax").style.width = "200px";
+	document.getElementById("RMax").style.fontSize = "16px";
+
+	document.getElementById("XMin").style.height = "30px";	
+	document.getElementById("XMin").style.width = "200px";
+	document.getElementById("XMin").style.fontSize = "16px";
+	document.getElementById("XMax").style.height = "30px";	
+	document.getElementById("XMax").style.width = "200px";
+	document.getElementById("XMax").style.fontSize = "16px";
+	document.getElementById("YMin").style.height = "30px";	
+	document.getElementById("YMin").style.width = "200px";
+	document.getElementById("YMin").style.fontSize = "16px";
+
+	document.getElementById("YMax").style.height = "30px";	
+	document.getElementById("YMax").style.width = "200px";
+	document.getElementById("YMax").style.fontSize = "16px";
+	document.getElementById("SMin").style.height = "30px";	
+	document.getElementById("SMin").style.width = "200px";
+	document.getElementById("SMin").style.fontSize = "16px";
+	document.getElementById("SMax").style.height = "30px";	
+	document.getElementById("SMax").style.width = "200px";
+	document.getElementById("SMax").style.fontSize = "16px";
+
+	document.getElementById("l1").style.fontSize = "16px";		
+	document.getElementById("l2").style.fontSize = "16px";	
+	document.getElementById("l3").style.fontSize = "16px";	
+	document.getElementById("l4").style.fontSize = "16px";	
+	document.getElementById("l5").style.fontSize = "16px";
+	document.getElementById("l6").style.fontSize = "16px";	
+	document.getElementById("l7").style.fontSize = "16px";	
+	document.getElementById("l8").style.fontSize = "16px";		
+	document.getElementById("Alpha").style.fontSize = "16px";	
+	document.getElementById("quantityAdd").style.fontSize = "16px";
+	document.getElementById("Alpha").style.height = "30px";	
+	document.getElementById("quantityAdd").style.width = "200px";	
+	document.getElementById("quantityAdd").style.height = "30px";	
+	document.getElementById("Alpha").style.width = "200px";		
+	document.getElementById("disposition").style.height = "30px";	
+	document.getElementById("disposition").style.width = "208px";
+	document.getElementById("disposition").style.fontSize = "16px";
+	document.getElementById("resize").style.height = "38px";	
+	document.getElementById("resize").style.width = "100px";
+	document.getElementById("resize").style.fontSize = "16px";		
+	document.getElementById("settings").style.height = "30px";	
+	document.getElementById("settings").style.width = "300px";
+	document.getElementById("settings").style.fontSize = "16px";
+	document.getElementById("preset").style.height = "40px";	
+	document.getElementById("preset").style.width = "300px";
+	document.getElementById("preset").style.fontSize = "16px";
+
+	document.getElementById("homepage").style.height = "30px";	
+	document.getElementById("homepage").style.width = "200px";
+	document.getElementById("homepage").style.fontSize = "16px";	
+	document.getElementById("homepage2").style.height = "30px";	
+	document.getElementById("homepage2").style.width = "200px";
+	document.getElementById("homepage2").style.fontSize = "16px";	
+	document.getElementById("homepage3").style.height = "30px";	
+	document.getElementById("homepage3").style.width = "200px";
+	document.getElementById("homepage3").style.fontSize = "16px";
+	document.getElementById("homepage4").style.height = "30px";	
+	document.getElementById("homepage4").style.width = "200px";
+	document.getElementById("homepage4").style.fontSize = "16px";
+	document.getElementById("homepage5").style.height = "30px";	
+	document.getElementById("homepage5").style.width = "200px";
+	document.getElementById("homepage5").style.fontSize = "16px";
+	document.getElementById("homepage6").style.height = "30px";	
+	document.getElementById("homepage6").style.width = "200px";
+	document.getElementById("homepage6").style.fontSize = "16px";
+	document.getElementById("homepage7").style.height = "30px";	
+	document.getElementById("homepage7").style.width = "200px";
+	document.getElementById("homepage7").style.fontSize = "16px";		
+	document.getElementById("homepage8").style.height = "30px";	
+	document.getElementById("homepage8").style.width = "200px";
+	document.getElementById("homepage8").style.fontSize = "16px";
+	
+	document.getElementById("URLnumber").style.height = "30px";	
+	document.getElementById("URLnumber").style.width = "200px";
+	document.getElementById("URLnumber").style.fontSize = "16px";
+	document.getElementById("BcgFrg").style.height = "16px";	
+	document.getElementById("BcgFrg").style.width = "16px";
+	document.getElementById("BcgFrg").style.fontSize = "12px";
+	document.getElementById("bcgAddress").style.height = "30px";	
+	document.getElementById("bcgAddress").style.width = "200px";
+	document.getElementById("bcgAddress").style.fontSize = "16px";	
+	document.getElementById("reuse").style.height = "40px";	
+	document.getElementById("reuse").style.width = "300px";
+	document.getElementById("reuse").style.fontSize = "16px";
+	document.getElementById("setURL").style.height = "40px";	
+	document.getElementById("setURL").style.width = "290px";
+	document.getElementById("setURL").style.fontSize = "16px";	
+	document.getElementById("texturesize").style.height = "30px";	
+	document.getElementById("texturesize").style.width = "200px";
+	document.getElementById("texturesize").style.fontSize = "16px";	
+	}
+</script>
+</body>
