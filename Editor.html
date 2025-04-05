@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML Editor</title>
+</head>
+ 
+<body>
+<div id = "tools">
+	<div id = "buttons">
+		<button type="button" onclick="add()">Add Element</button>
+		<button type="button" onclick="remove()">Remove Element</button>
+		<button type="button" onclick="load()">Load Code</button>
+		<button type="button" onclick="select()">Select element</button>
+		<button type="button" onclick="ToString()">Compile</button>
+	</div>
+	<div id = "forms">
+		<select id="cathegories" onchange="elem()">>
+		  <option value=0>Basic</option>
+		  <option value=1>Formatting</option>
+		  <option value=2>Forms and Input</option>
+		  <option value=3>Images</option>
+		  <option value=4>Audio / Video</option>
+		  <option value=5>Links</option>
+		  <option value=6>Lists</option>
+		  <option value=7>Tables</option>	
+		  <option value=8>Styles and Semantics</option>	
+		  <option value=9>Head / Meta Info</option>	
+		  <option value=10>Programming / frames</option>
+		  <option value=11>Others</option>		  
+		</select>
+		<select id="elements">			  
+		</select>
+		<select id="where">
+		  <option value=0>To the end</option>
+		  <option value=1>At the begining</option>
+		  <option value=2>After current</option>
+		  <option value=3>Before current</option>
+		  <option value=4>Add child at the begining</option>
+		  <option value=5>Add child to the end</option>			  
+		</select>
+		<input type="text" id="ftxt">
+	</div>
+
+</div>
+<div id = "params" style="border-style: solid; overflow: scroll; max-width:100%; height:120px; max-height:120px; border-width: 1px;"></div>
+<div onclick='current(this.id)' id = "Outlook" style="border-style: solid; overflow: scroll; max-width:100%; height:280px; max-height:280px; border-width: 1px;"></div>
+<div onclick='current(this.id)' id = "Outscript" style="border-style: solid; overflow: scroll; max-width:100%; height:230px; max-height:230px; border-width: 1px;"></div>
+<div id = "CodeBar" style="border-style: solid; overflow: scroll; max-width:100%; height:170px; max-height:170px; border-width: 1px;">
+<p>Place for paragraphs</p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="Attributes.js"></script>
+<script>
+
+// globals
+let Eid = '';
+let sid = true;
+var str = "";
+var pring = '';
+
+function checkTag(){
+var tt = Eid.substring(1);
+var elemTag = $("#L"+tt).prop('outerHTML');
+var beg = elemTag.search("<");
+var end = elemTag.search(" ");
+var tag = elemTag.substring(beg+1, end);
+var Obb = {};
+switch (tag) {
+
+case 'textarea':
+Obb = Gtextarea;
+break;
+case 'input':
+Obb = Ginput;
+break;  
+case 'object':
+Obb = Gobject;
+break;  
+case 'video':
+Obb = Gvideo;
+break;
+case 'embed':
+Obb = Gembed;
+break;
+case 'canvas':
+Obb = Gcanvas;
+break;
+case 'img':
+Obb = Gimg;
+break;      
+case 'iframe':
+Obb = Giframe;
+break;
+case 'progress':
+Obb = Gprogress;
+break;
+case 'param':
+Obb = Gparam;
+break;
+case 'meter':
+Obb = Gmeter;
+break;
+case 'option':
+Obb = Goption;
+break;
+case 'li':
+Obb = Gli;
+break;
+case 'button':
+Obb = Gbutton;
+break;
+case 'style':
+Obb = Gstyle;
+break;
+case 'source':
+Obb = Gsource;
+break;
+case 'script':
+Obb = Gscript;
+break;
+case 'link':
+Obb = Glink;
+break;
+case 'a':
+Obb = Ga;
+break;
+case 'area':
+Obb = Garea;
+break;
+case 'form':
+Obb = Gform;
+break;
+case 'ol':
+Obb = Gol;
+break;                      
+}
+return Obb;
+}
+
+function showParams(){
+const dpb = {...Global, ...checkTag()};
+var tt = Eid.substring(1);
+$("#params").empty();
+for (const pr in dpb) {
+var name = pr.substring(1);
+var typek = dpb[pr];
+var inp = typek.type;
+var inpList = typek.values;
+var inpBox = "";
+var att = $("#L"+tt).attr(name);
+var attName = "";
+var checked = "";
+if (att !== undefined){
+attValue = att;
+
+checked = "checked";
+}
+else{
+attValue = "";
+checked = "";
+}
+
+
+if (inp == "label"){
+inpBox = "<span>&emsp;=> Write attribute text:&ensp;</span><input type='text' id='S"+name+"' style='display: inline' value='"+attValue+"'></input>";
+}
+
+else if (inp == "list" ){
+var opt = "";
+for (const LL in inpList){   
+var selection = "";
+
+if (inpList[LL] == attValue){
+selection = " selected='"+attValue+"'";
+}
+else{
+selection = "";
+}
+opt = opt + "<option "+selection+" value='"+inpList[LL]+"'>"+inpList[LL]+"</option>";
+}
+inpBox = "<span>&emsp;=> Select attribute value:&ensp;</span><select id='S"+name+"' style='display: inline'>"+opt+"</select>";
+}
+
+else if (inp == "no"){
+const op1 = '<option value="true">true</option>';
+const op2 = '<option value="false">false</option>';
+inpBox = "<span>&emsp;=> insert data with checkbox:&ensp;</span><select style='opacity:0;' disabled id='S"+name+"' style='display: inline'>"+op1+op2+"</select>";
+}
+else if (inp == "Dlabel"){
+inpBox = "<span>&emsp;=> Write attribute text:&ensp;</span><input type='text' id='S"+name+"' style='display: inline'></input><span>&emsp;=>&ensp; Write attribute name: </span><input type='text' id='SS"+name+"' style='display: inline'></input>";
+}
+
+$("#params").append("<input type='checkbox' "+checked+" onchange='adjustAttribute(this.id)' id='"+pr+"'>"+"<span>"+name+"</span>"+inpBox+"<br>");
+}
+}
+function select(){
+sid = true;
+}
+
+function adjustAttribute(ID){
+
+var rtt = ID.substring(1);
+var tt = Eid.substring(1);
+var Hid = $("#L"+tt).attr(rtt);
+var val = $("#S"+rtt).val();
+if ($("#"+ID).is(':checked') != true){
+if (rtt != "id"){
+$("#L"+tt).removeAttr(rtt);
+}
+else{
+$("#L"+tt).attr(rtt,val);
+alert("id couldn't be removed, but changed only")
+}
+}
+else if ($("#"+ID).is(':checked') == true) {
+$("#L"+tt).attr(rtt,val);
+}
+showParams();
+}
+
+function ToString(){
+str = $('#Outlook').prop('outerHTML');
+pring = str.replaceAll('><', '>\n<');
+pring = pring.replaceAll('<', '&lt;');
+pring = pring.replaceAll('>', '&gt;');
+
+$("#CodeBar").empty();
+$("#CodeBar").append("<pre style='max-width:100%; word-wrap: break-word;'>"+pring+"</pre>");
+}
+
+function remove(){
+
+var tt = Eid.substring(1);
+
+$("#L"+tt).remove();
+$("#S"+tt).remove();
+
+}
+
+function add(){
+var RandID = Date.now();
+let r = $("#elements").val();
+let cath = parseInt($("#cathegories").val());
+let txt = $("#ftxt").val();
+let o = parseInt($("#where").val());
+var tt = Eid.substring(1);
+if (cath !=9 && cath !=11){
+switch (o){
+case 0:
+$("#Outlook").append("<"+r+" onclick='current(this.id)' id = '"+'L'+RandID+"'>"+txt+"</"+r+">");
+$("#Outscript").append("<p onclick='current(this.id)' id = '"+'S'+RandID+"'>"+"&lt;"+r+" onclick='current(this.id)' id = '"+RandID+"'&gt;"+txt+"&lt;/"+r+"&gt;"+"</p>");
+break;
+case 1:
+$("#Outlook").prepend("<"+r+" onclick='current(this.id)' id = '"+'L'+RandID+"'>"+txt+"</"+r+">");
+$("#Outscript").prepend("<p onclick='current(this.id)' id = '"+'S'+RandID+"'>"+"&lt;"+r+" onclick='current(this.id)' id = '"+RandID+"'&gt;"+txt+"&lt;/"+r+"&gt;"+"</p>");
+break;
+case 2:
+$("#L"+tt).after("<"+r+" onclick='current(this.id)' id = '"+'L'+RandID+"'>"+txt+"</"+r+">");
+$("#S"+tt).after("<p onclick='current(this.id)' id = '"+'S'+RandID+"'>"+"&lt;"+r+" onclick='current(this.id)' id = '"+RandID+"'&gt;"+txt+"&lt;/"+r+"&gt;"+"</p>");
+break;
+case 3:
+$("#L"+tt).before("<"+r+" onclick='current(this.id)' id = '"+'L'+RandID+"'>"+txt+"</"+r+">");
+$("#S"+tt).before("<p onclick='current(this.id)' id = '"+'S'+RandID+"'>"+"&lt;"+r+" onclick='current(this.id)' id = '"+RandID+"'&gt;"+txt+"&lt;/"+r+"&gt;"+"</p>");
+break;
+case 4:
+$("#L"+tt).append("<"+r+" onclick='current(this.id)' id = '"+'L'+RandID+"'>"+txt+"</"+r+">");
+$("#S"+tt).append("<p onclick='current(this.id)' id = '"+'S'+RandID+"'>"+"&lt;"+r+" onclick='current(this.id)' id = '"+RandID+"'&gt;"+txt+"&lt;/"+r+"&gt;"+"</p>");
+break;
+case 5:
+$("#L"+tt).prepend("<"+r+" onclick='current(this.id)' id = '"+'L'+RandID+"'>"+txt+"</"+r+">");
+$("#S"+tt).prepend("<p onclick='current(this.id)' id = '"+'S'+RandID+"'>"+"&lt;"+r+" onclick='current(this.id)' id = '"+RandID+"'&gt;"+txt+"&lt;/"+r+"&gt;"+"</p>");
+break;
+}
+}
+else if (cath == 9){
+
+}
+else if (cath==11){
+var Comm = $("#L"+tt).prop('outerHTML');
+var CommL = $("#S"+tt).prop('outerHTML');
+var ent = "<!--";
+var end = "//--";
+var cuml = CommL.substring(0, (CommL.length - 4));
+var Zcomment = Comm + "<!--"+txt+end+">"
+alert(Zcomment);
+$("#L"+tt).replaceWith(Zcomment);
+$("#S"+tt).replaceWith(cuml + "&emsp; &lt;!--"+txt+"//--&gt;</p>");
+}
+}
+
+function clear(){
+$("#elements").empty();
+}
+
+function current(ID){
+if (sid == true){
+ Eid = ID;
+ alert(Eid);
+ sid = false;
+ showParams();
+ }
+}
+
+function elem(){
+var r = parseInt($("#cathegories").val());
+clear();
+switch (r) {
+  case 0:
+     $("#elements").append("<option value='p'>p</option>");
+	 $("#elements").append("<option value='h1'>h1</option>");
+	 $("#elements").append("<option value='h2'>h2</option>");
+	 $("#elements").append("<option value='h3'>h3</option>");
+	 $("#elements").append("<option value='h4'>h4</option>");
+	 $("#elements").append("<option value='h5'>h5</option>");
+	 $("#elements").append("<option value='h6'>h6</option>");
+	 $("#elements").append("<option value='br'>br</option>");
+	 $("#elements").append("<option value='hr'>hr</option>");
+    break;
+  case 1:
+     $("#elements").append("<option value='abbr'>abbr</option>");   
+	 $("#elements").append("<option value='address'>address</option>");
+	 $("#elements").append("<option value='b'>b</option>");
+	 $("#elements").append("<option value='bdi'>bdi</option>");
+	 $("#elements").append("<option value='bdo'>bdo</option>");
+	 $("#elements").append("<option value='blockquote'>blockquote</option>");
+	 $("#elements").append("<option value='cite'>cite</option>");
+	 $("#elements").append("<option value='code'>code</option>");
+	 $("#elements").append("<option value='del'>del</option>");
+	 $("#elements").append("<option value='dfn'>dfn</option>");
+	 $("#elements").append("<option value='em'>em</option>");
+	 $("#elements").append("<option value='i'>i</option>");
+	 $("#elements").append("<option value='ins'>ins</option>");
+	 $("#elements").append("<option value='kbd'>kbd</option>");
+	 $("#elements").append("<option value='mark'>mark</option>");
+	 $("#elements").append("<option value='meter'>meter</option>");
+	 $("#elements").append("<option value='pre'>pre</option>");
+	 $("#elements").append("<option value='progress'>progress</option>");
+	 $("#elements").append("<option value='q'>q</option>");
+	 $("#elements").append("<option value='rp'>rp</option>");
+	 $("#elements").append("<option value='rt'>rt</option>");
+	 $("#elements").append("<option value='ruby'>ruby</option>");
+	 $("#elements").append("<option value='s'>s</option>");
+	 $("#elements").append("<option value='samp'>samp</option>");
+	 $("#elements").append("<option value='small'>small</option>");
+	 $("#elements").append("<option value='rp'>rp</option>");
+	 $("#elements").append("<option value='rt'>rt</option>");
+	 $("#elements").append("<option value='strong'>strong</option>");
+	 $("#elements").append("<option value='sub'>sub</option>");
+	 $("#elements").append("<option value='sup'>sup</option>");
+	 $("#elements").append("<option value='template'>template</option>");
+	 $("#elements").append("<option value='time'>time</option>");
+	 $("#elements").append("<option value='u'>u</option>");
+	 $("#elements").append("<option value='var'>var</option>");
+	 $("#elements").append("<option value='wbr'>wbr</option>");		 
+    break;
+  case 2: 
+	 $("#elements").append("<option value='button'>button</option>");
+     $("#elements").append("<option value='form'>form</option>");
+	 $("#elements").append("<option value='input'>input</option>");
+	 $("#elements").append("<option value='textarea'>textarea</option>");
+	 $("#elements").append("<option value='button'>select</option>");
+	 $("#elements").append("<option value='optgroup'>optgroup</option>");
+	 $("#elements").append("<option value='option'>option</option>");
+	 $("#elements").append("<option value='label'>label</option>");
+	 $("#elements").append("<option value='fieldset'>fieldset</option>");
+	 $("#elements").append("<option value='legend'>legend</option>");
+	 $("#elements").append("<option value='datalist'>datalist</option>");
+	 $("#elements").append("<option value='output'>output</option>");	 
+    break;
+  case 3:
+     $("#elements").append("<option value='img'>img</option>");
+	 $("#elements").append("<option value='map'>map</option>");
+	 $("#elements").append("<option value='area'>area</option>");
+	 $("#elements").append("<option value='canvas'>canvas</option>");
+	 $("#elements").append("<option value='figcaption'>figcaption</option>");
+	 $("#elements").append("<option value='figure'>figure</option>");
+	 $("#elements").append("<option value='picture'>picture</option>");
+	 $("#elements").append("<option value='svg'>svg</option>");
+    break;
+  case 4:
+     $("#elements").append("<option value='audio'>audio</option>");
+	 $("#elements").append("<option value='source'>source</option>");
+	 $("#elements").append("<option value='track'>track</option>");
+	 $("#elements").append("<option value='video'>video</option>");
+    break;
+  case 5:
+     $("#elements").append("<option value='a'>a</option>");
+	 $("#elements").append("<option value='link'>link</option>");
+	 $("#elements").append("<option value='nav'>nav</option>");
+    break;
+  case 6:
+     $("#elements").append("<option value='ul'>ul</option>");
+	 $("#elements").append("<option value='ol'>ol</option>");
+	 $("#elements").append("<option value='li'>li</option>");
+	 $("#elements").append("<option value='dl'>dl</option>");
+	 $("#elements").append("<option value='dt'>dt</option>");
+	 $("#elements").append("<option value='dd'>dd</option>");
+    break;
+  case 7:
+     $("#elements").append("<option value='table'>table</option>");
+	 $("#elements").append("<option value='caption'>caption</option>");
+	 $("#elements").append("<option value='th'>th</option>");
+	 $("#elements").append("<option value='tr'>tr</option>");
+	 $("#elements").append("<option value='td'>dt</option>");
+	 $("#elements").append("<option value='thead'>thead</option>");
+	 $("#elements").append("<option value='tbody'>tbody</option>");
+	 $("#elements").append("<option value='tfoot'>tfoot</option>");
+	 $("#elements").append("<option value='col'>col</option>");
+	 $("#elements").append("<option value='colgroup'>colgroup</option>");
+    break;
+  case 8:	
+     $("#elements").append("<option value='style'>style</option>");
+	 $("#elements").append("<option value='div'>div</option>");
+	 $("#elements").append("<option value='span'>span</option>");
+	 $("#elements").append("<option value='header'>header</option>");
+	 $("#elements").append("<option value='footer'>footer</option>");
+	 $("#elements").append("<option value='main'>main</option>");
+	 $("#elements").append("<option value='section'>section</option>");
+	 $("#elements").append("<option value='article'>article</option>");
+	 $("#elements").append("<option value='aside'>aside</option>");
+	 $("#elements").append("<option value='details'>details</option>");
+	 $("#elements").append("<option value='summary'>summary</option>");
+	 $("#elements").append("<option value='data'>data</option>");
+    break;
+  case 9:
+     $("#elements").append("<option value='head'>head</option>");
+	 $("#elements").append("<option value='meta'>meta</option>");
+	 $("#elements").append("<option value='base'>base</option>");
+	 $("#elements").append("<option value='html'>html</option>");
+	 $("#elements").append("<option value='footer'>footer</option>");
+	 $("#elements").append("<option value='title'>title</option>");
+	 $("#elements").append("<option value='body'>body</option>");
+	 $("#elements").append("<option value='!DOCTYPE'>!DOCTYPE</option>");
+    break;
+  case 10:
+     $("#elements").append("<option value='script'>script</option>");
+	 $("#elements").append("<option value='noscript'>noscript</option>");
+	 $("#elements").append("<option value='embed'>embed</option>");
+	 $("#elements").append("<option value='object'>object</option>");
+	 $("#elements").append("<option value='param'>param</option>");
+	 $("#elements").append("<option value='iframe'>iframe</option>");
+    break;
+  case 11:
+	 $("#elements").append("<option value='!--...--'>!--...--</option>");
+	
+    break;	
+}
+}
+</script>
+</body> 
+ 
+</html>
