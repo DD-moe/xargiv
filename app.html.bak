@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<head>
+	<title>App</title>
+	<style>
+		body{background-color:#26734d;font-family:Arial;}
+		#container{width:1600px;height:2330px;background-color:#40bf80;margin-left:auto;margin-right:auto;margin-top:2%;margin-bottom:2%;border-radius:20px;}
+		#header{width:96%;height:200px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:30px;}
+		#top{width:100%;height:90px;text-align:center;line-height:90px;color:#26734d;}
+		#menu{background-color:#40bf80;width:96%;height:80px;border:6px solid #26734d;border-radius:20px;margin-left:auto;margin-right:auto;}
+		#menu ul li a{display:block;text-decoration:none;color:#26734d;font-size:24px;position:relative;top:10px;}
+		#menu ul li{float:left;line-height:43px;margin-left:12px;list-style-type:none;}
+		.list{background-color:#8cd9b3;border-radius:10px;width:346px;height:60px;position:relative;top:-6px;left:-26px;}
+		.list:hover{background-color:#66ffb5;}
+		#a{position:relative;left:130px;}
+		#b{position:relative;left:140px;}
+		#c{position:relative;left:110px;}
+		#d{position:relative;left:100px;}
+		
+		#content{width:96%;height:1900px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:70px;}
+		#footer{width:96%;height:100px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:100px;}
+		.footer_text_a{color:#26734d;font-size:18px;position:relative;left:400px;top:20px;}
+		.footer_text_b{color:#26734d;font-size:18px;position:relative;left:280px;top:20px;}
+		
+		#canvas_a{height:1024px;width:1024px;position:relative;top:20px;left:20px; background-image:url("transparent.jpg");float:left;}
+		#canvas_b{height:384px;width:384px;position:relative;top:660px;left:40px; background-image:url("transparent.jpg");float:left}
+		#clear_a{clear:both;}
+		
+		#button_a{border:4px solid #26734d;border-radius:10px;background-color:#40bf80;position:relative;top:40px;left:40px;width:450px;height:70px;}
+		.but_a{height:50px;width:140px;position:relative;left:10px;top:10px;font-size:20px;font-family:Arial;color:#26734d;}
+		
+		#form_a{float:left;border:4px solid #26734d;border-radius:10px;background-color:#40bf80;position:relative;top:80px;left:40px;width:750px;height:650px;color:white;}
+		.label_a{position:relative;left:20px;}
+		#preset{position:relative;left:430px;top:64px;width:300px;height:40px;font-size:16px;font-family:Arial;color:#26734d;}
+		#quantity{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:10px;}
+		#RMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:19px;}
+		#RMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:15px;}
+		#XMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:18px;}
+		#XMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:13px;}
+		#YMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:17px;}
+		#YMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:12px;}
+		#SMin{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:45px;}
+		#SMax{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:38px;}
+		#texturesize{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;}
+		#but_b{position:relative;left:610px;top:-36px;}
+		#resize{height:38px;width:100px;font-size:16px;font-family:Arial;color:#26734d;}
+		
+		#form_b{float:left;border:4px solid #26734d;border-radius:10px;background-color:#40bf80;position:relative;top:80px;left:80px;width:650px;height:650px;color:white;}
+		.label_b{}
+		#homepage, #homepage2, #homepage3, #homepage4{width:200px;height:30px;font-size:16px;font-family:Arial;color:#26734d;position:relative;left:60px;top:-5px;}
+		#URLnumber{position:relative;left:370px;top:-5px;;width:200px;height:30px;}
+		#v{position:relative;top:-50px;}
+		#x{position:relative;top:-90px;}
+		#y{position:relative;top:-130px;}
+		#z{position:relative;top:-170px;}
+		#xyz{position:relative;top:-200px;}
+		#zyx{position:relative;top:-117px; left:20px;}
+		#reuse{width:300px;height:40px;font-size:16px;font-family:Arial;color:#26734d;}
+		#abc{position:relative;left:340px;top:-157px;}
+		#setURL{width:290px;height:40px;font-size:16px;font-family:Arial;color:#26734d;}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="top"> <h1>RandTextureGen - App</h1> </div>
+			<div id="menu">
+				<ul>
+					<li> <div class="list"><a id="a" href="home.html">HOME</a></div> </li>
+					<li> <div class="list"><a id="b" href="#">APP</a></div> </li>
+					<li> <div class="list"><a id="c" href="tutorial.html">TUTORIAL</a></div> </li>
+					<li> <div class="list"><a id="d" href="terms.html">COPYRIGHT</a></div> </li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div id="canvas_a"><canvas id="myCanvas" width="1024" height="1024" style="border:1px solid #000000;"></canvas></div>
+			<div id="canvas_b"><canvas id="Look" width="384" height="384" style="border:1px solid #000000;"></canvas></div>
+			<div id="clear_a"></div>
+			<br>
+			<div id="form">
+				<div id="button_a">
+					<input type="button" id="spawn" class="but_a" onclick="sp()" value="Spawn">
+					<input type="button" id="clear" class="but_a" onclick="clean()" value="Clear">
+					<input type="button" id="see" class="but_a" onclick="seen()" value="See Result">
+				</div>
+				<br>
+				<div id="form_a">
+					<input type="button" id="preset" onclick="preset()" value="See Example Values">
+					<br>
+					<div class="label_a"><label for="quantity"> Amount of samples: <input type="number" id="quantity" placeholder="between 1 and 512" name="quantity" min="1" max="512"> </label></div>
+					<br>
+					<div class="label_a"><label for="RMin"> Minimal Z rotation: <input type="number" placeholder="between -360 and 360" id="RMin" name="RMin" min="-360" max="360"> </label></div>
+					<br>
+					<div class="label_a"><label for="RMax"> Maximal Z rotation: <input type="number" placeholder="between -360 and 360" id="RMax" name="RMax" min="-360" max="360"> </label></div>
+					<br>
+					<div class="label_a"><label for="XMin"> Minimal X position: <input type="number" placeholder="between 0 and 1024" id="XMin" name="XMin" min="0" max="1024"> </label></div>
+					<br>
+					<div class="label_a"><label for="XMax"> Maximal X position: <input type="number" placeholder="between 0 and 1024" id="XMax" name="XMax" min="0" max="1024"> </label></div>
+					<br>
+					<div class="label_a"><label for="YMin"> Minimal Y position: <input type="number" placeholder="between 0 and 1024" id="YMin" name="YMin" min="0" max="1024"> </label></div>
+					<br>
+					<div class="label_a"><label for="YMax"> Maximal Y position: <input type="number" placeholder="between 0 and 1024" id="YMax" name="YMax" min="0" max="1024"> </label></div>
+					<br>
+					<div class="label_a"><label for="SMin"> Minimal scale: <input type="number" placeholder="between 0.1 and 1.5" id="SMin" name="SMin" min="0" max="1024" step="0.1"> </label></div>
+					<br>
+					<div class="label_a"><label for="SMax"> Maximal scale: <input type="number" placeholder="between 0.1 and 1.5" id="SMax" name="SMax" min="0" max="1024" step="0.1"> </label></div>
+					<br><br><br>
+					<div class="label_a"><label for="texturesize"> texture size in px (accepted only the power of 2): <input type="number" placeholder="between 32 and 4096" id="texturesize" name="texturesize" min="16" max="4096"> </label></div>
+					<div id="but_b"><input type="button" id="resize" onclick="resize()" value="Resize"></div>
+				</div>
+			</div>
+			<div id="form_b">
+				<p style="position:relative;left:20px;top:40px;">URL image's addresses:</p>
+				<br><br><br>
+				<div id="v">
+					<p style="position:relative;left:20px;top:40px;">1st:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage" name="homepage">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; = '0' value</p>
+					</div>
+				</div>
+				<div id="x">
+					<p style="position:relative;left:20px;top:40px;">2nd:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage2" name="homepage2">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; = '1' value</p>
+					</div>
+				</div>	
+				<div id="y">
+					<p style="position:relative;left:20px;top:40px;">3rd:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage3" name="homepage3">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; + &#8686; = '2' value</p>
+					</div>
+				</div>	
+				<div id="z">
+					<p style="position:relative;left:20px;top:40px;">4th:</p>
+					<div class="label_b">
+						<input type="url" placeholder="http://..." id="homepage4" name="homepage4">
+						<p style="position:relative;left:300px;top:-47px;">&#8678; + &#8679; + &#8686; + &#8687; = '3' value</p>
+					</div>
+				</div>
+				<div id="xyz">
+					<p style="position:relative;left:20px;top:40px;">Number of active image's sources (minus one):</p>
+					<div class="label_b"><input type="number" placeholder="0-3" id="URLnumber" name="URLnumber" min="0" max="3" step="1"></div>
+				</div>	
+				<div id="zyx">
+					<input type="button" id="reuse" onclick="reuse()" value="Use url from first form in all forms">
+				</div>
+				<div id="abc">
+					<input type="button" id="setURL" onclick="seturl()" value="Load new image">
+				</div>	
+			</div>
+		</div>
+		<div id="footer">
+			<p class="footer_text_a">This website is devoted to computer graphics, in particular to images and textures.</p> <p class="footer_text_b">The purpose of this web application is to deliver it free of charge the possibility of obtaining textures from any photo.</p>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+      var myCanvas = document.getElementById("myCanvas");
+      var myContext = myCanvas.getContext("2d");
+	  var OutlookCanvas = document.getElementById("Look");
+      var OutlookContext = OutlookCanvas.getContext("2d");
+	  // global delaration
+	  var rotmin = 0;
+	  var rotmax = 0;
+	  var Xmin = 0;
+	  var YYmin = 0;
+	  var amount = 0;
+	  var scalemin = 1;
+	  var scalemax = 1;
+	  var Xmax = 0;
+	  var Ymax = 0;
+	  
+	  var ready = false;
+	  var ready2 = false;
+	  var ready3 = false;
+	  var ready4 = false;
+	  
+	  var URI = "";
+	  var URI2 = "";
+	  var URI3 = "";
+	  var URI4 = "";	
+
+	  var uriNum = 0;
+	  var PixSize = 1024;
+      
+      //myCanvas.width="750"; // Optional
+      //myCanvas.height="500"; // Optional
+
+      var myImage=new Image();
+	  var myImage2=new Image();
+      var myImage3=new Image();
+	  var myImage4=new Image();
+
+      myImage.src="https://cdn.pixabay.com/photo/2017/02/10/14/05/heart-2055203__340.png";
+
+	myImage.onload = function () {
+	ready = true;
+	}
+	myImage2.onload = function () {
+	ready2 = true;
+	}
+	myImage3.onload = function () {
+	ready3 = true;
+	}
+	myImage4.onload = function () {
+	ready4 = true;
+	}	
+
+	  function serial(){
+	  for (let i = 0; i < amount; i++) {
+	  	let RandRot = Math.random() * (rotmax - rotmin) + rotmin;
+		let RandX = Math.abs(Math.random() * (Xmax - Xmin) + Xmin);
+		let RandY = Math.abs(Math.random() * (Ymax - Ymin) + Ymin);
+		let RR = Math.random() * (scalemax - scalemin) + scalemin;
+		let RandS = Math.abs(RR);
+		let IMG = Math.round(Math.random() *uriNum);
+			spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,-PixSize);
+		spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,0);
+		spawn(RandX,RandY,RandRot,RandS,IMG,-PixSize,PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,0,-PixSize);
+		spawn(RandX,RandY,RandRot,RandS,IMG,0,0);
+		spawn(RandX,RandY,RandRot,RandS,IMG,0,PixSize);
+			spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,-PixSize);
+		spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,0);
+		spawn(RandX,RandY,RandRot,RandS,IMG,PixSize,PixSize);
+		}
+	  }
+	  
+	  
+	  function spawn(x,y,rot,scale,image,Ax,Ay){
+	  myContext.scale(scale,scale);
+	  myContext.translate((x+Ax)/scale,(y+Ay)/scale);
+	  myContext.rotate(rot * Math.PI / 180);
+	  select(image);
+
+	  }
+	  
+	  function sp(){
+	  amount = document.getElementById("quantity").value;
+	  rotmin = parseFloat(document.getElementById("RMin").value);
+	  rotmax = parseFloat(document.getElementById("RMax").value);
+	  Ymin = parseFloat(document.getElementById("YMin").value);
+	  Ymax = parseFloat(document.getElementById("YMax").value);
+	  Xmin = parseFloat(document.getElementById("XMin").value);
+	  Xmax = parseFloat(document.getElementById("XMax").value);	  
+	  scalemin = parseFloat(document.getElementById("SMin").value);
+	  scalemax = parseFloat(document.getElementById("SMax").value);	 
+		if (ready == true && ready2 == true && ready3 == true && ready4 == true) {
+		serial();
+		
+		}
+	  }
+	  
+	  
+	  function clean(){
+	  myContext.clearRect(0, 0, PixSize, PixSize);
+	  }
+	  
+	  
+	  function seturl(){
+	  URI = document.getElementById("homepage").value;
+	  myImage.src = URI;
+	  URI2 = document.getElementById("homepage2").value;
+	  myImage2.src = URI2;
+	  URI3 = document.getElementById("homepage3").value;
+	  myImage3.src = URI3;
+	  URI4 = document.getElementById("homepage4").value;
+	  myImage4.src = URI4;
+	  ready = false;
+	  ready2 = false;
+	  ready3 = false;
+	  ready4 = false;
+	  uriNum = parseInt(document.getElementById("URLnumber").value);
+	  }
+	  
+	  function seen() {
+	    OutlookContext.setTransform(1, 0, 0, 1, 0, 0);
+	    OutlookContext.clearRect(0, 0, PixSize/8*3, PixSize/8*3);
+		OutlookContext.setTransform(0.125, 0, 0, 0.125, 0, 0);
+		OutlookContext.drawImage(myCanvas,0,0);
+		OutlookContext.drawImage(myCanvas,PixSize,0);
+		OutlookContext.drawImage(myCanvas,PixSize*2,0);
+		OutlookContext.drawImage(myCanvas,0,PixSize);
+		OutlookContext.drawImage(myCanvas,0,PixSize*2);
+		OutlookContext.drawImage(myCanvas,PixSize,PixSize);
+		OutlookContext.drawImage(myCanvas,PixSize*2,PixSize);
+		OutlookContext.drawImage(myCanvas,PixSize,PixSize*2);
+		OutlookContext.drawImage(myCanvas,PixSize*2,PixSize*2);
+	  }
+	  
+	  
+	  
+	  
+	  function select(x){
+		
+		switch (x) {
+		case 0:
+	  myContext.translate(-myImage.width/2, -myImage.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		case 1:
+	  myContext.translate(-myImage2.width/2, -myImage2.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage2,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		case 2:
+	  myContext.translate(-myImage3.width/2, -myImage3.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage3,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		case 3:
+	  myContext.translate(-myImage4.width/2, -myImage4.height/2);
+	  myContext.globalCompositeOperation = "source-over";
+      myContext.drawImage(myImage4,0,0);	  
+	  myContext.setTransform(1, 0, 0, 1, 0, 0);
+
+			break;
+		}
+	  }
+	  
+	  
+	  function preset(){
+	  document.getElementById("quantity").value = 1;
+	  document.getElementById("RMin").value = 0;
+	  document.getElementById("RMax").value = 360;
+	  document.getElementById("XMin").value = 0;
+	  document.getElementById("XMax").value = PixSize;
+	  document.getElementById("YMin").value = 0;
+	  document.getElementById("YMax").value = PixSize;
+	  document.getElementById("SMin").value = 0.5;
+	  document.getElementById("SMax").value = 1;	  
+	  document.getElementById("URLnumber").value = 0;
+	  }
+	
+	  function reuse(){
+	  document.getElementById("homepage2").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage3").value = document.getElementById("homepage").value;
+	  document.getElementById("homepage4").value = document.getElementById("homepage").value;
+	  }
+	  
+	  function resize(){
+	  PixSize = document.getElementById("texturesize").value
+
+		if (PixSize == 32){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "32px";
+		document.getElementById("canvas_a").style.height = "32px";
+		document.getElementById("canvas_b").style.width = "12px";
+		document.getElementById("canvas_b").style.height = "12px";	
+		document.getElementById("canvas_b").style.top = "39px";			
+		}
+		else if (PixSize == 64){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "64px";
+		document.getElementById("canvas_a").style.height = "64px";
+		document.getElementById("canvas_b").style.width = "24px";
+		document.getElementById("canvas_b").style.height = "24px";
+		document.getElementById("canvas_b").style.top = "60px";		
+		}
+		else if (PixSize == 128){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "128px";
+		document.getElementById("canvas_a").style.height = "128px";
+		document.getElementById("canvas_b").style.width = "48px";
+		document.getElementById("canvas_b").style.height = "48px";
+		document.getElementById("canvas_b").style.top = "100px";			
+		}	
+		else if (PixSize == 256){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "256px";
+		document.getElementById("canvas_a").style.height = "256px";
+		document.getElementById("canvas_b").style.width = "96px";
+		document.getElementById("canvas_b").style.height = "96px";
+		document.getElementById("canvas_b").style.top = "180px";		
+		}	
+		else if (PixSize == 512){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "512px";
+		document.getElementById("canvas_a").style.height = "512px";
+		document.getElementById("canvas_b").style.width = "192px";
+		document.getElementById("canvas_b").style.height = "192px";	
+		document.getElementById("canvas_b").style.top = "340px";			
+		
+		}	
+		else if (PixSize == 1024){
+		ResStat();
+		DefLayout();
+		document.getElementById("canvas_a").style.width = "1024px";
+		document.getElementById("canvas_a").style.height = "1024px";
+		document.getElementById("canvas_b").style.width = "384px";
+		document.getElementById("canvas_b").style.height = "384px";	
+		document.getElementById("canvas_b").style.top = "660px";		
+		}	
+		else if (PixSize == 2048){
+		ResStat();
+		document.getElementById("canvas_a").style.width = "2048px";
+		document.getElementById("canvas_a").style.height = "2048px";
+		document.getElementById("canvas_b").style.width = "768px";
+		document.getElementById("canvas_b").style.height = "768px";	
+		document.getElementById("canvas_b").style.top = "1300px";	
+		
+		document.getElementById("canvas_b").style.left = "80px";
+		document.getElementById("container").style.width = "3200px";
+		document.getElementById("container").style.height = "4260px";
+		document.getElementById("content").style.height = "3700px";
+		document.getElementById("footer").style.height = "200px";
+		document.getElementById("button_a").style.height = "140px";
+		document.getElementById("button_a").style.width = "900px";
+		document.getElementById("form_a").style.height = "1300px";
+		document.getElementById("form_a").style.width = "1500px";	
+		document.getElementById("form_b").style.height = "1300px";
+		document.getElementById("form_b").style.width = "1300px";	
+		document.getElementById("spawn").style.height = "100px";	
+		document.getElementById("spawn").style.width = "280px";	
+		document.getElementById("clear").style.height = "100px";	
+		document.getElementById("clear").style.width = "280px";	
+		document.getElementById("see").style.height = "100px";	
+		document.getElementById("see").style.width = "280px";	
+		
+		document.getElementById("spawn").style.fontSize = "40px";	
+		document.getElementById("clear").style.fontSize = "40px";	
+		document.getElementById("see").style.fontSize = "40px";
+		document.body.style.zoom = "50%";
+		}	
+		else if (PixSize == 4096){
+		ResStat();
+		document.getElementById("canvas_a").style.width = "4096px";
+		document.getElementById("canvas_a").style.height = "4096px";  
+		document.getElementById("canvas_b").style.width = "1536px";
+		document.getElementById("canvas_b").style.height = "1536px";	
+		document.getElementById("canvas_b").style.top = "2580px";		
+
+		document.getElementById("canvas_b").style.left = "160px";
+		document.getElementById("container").style.width = "6400px";
+		document.getElementById("container").style.height = "8020px";
+		document.getElementById("content").style.height = "7200px";
+		document.getElementById("footer").style.height = "400px";
+		document.getElementById("button_a").style.height = "280px";
+		document.getElementById("button_a").style.width = "1800px";
+		document.getElementById("form_a").style.height = "2600px";
+		document.getElementById("form_a").style.width = "3000px";	
+		document.getElementById("form_b").style.height = "2600px";
+		document.getElementById("form_b").style.width = "2600px";	
+		document.getElementById("spawn").style.height = "200px";	
+		document.getElementById("spawn").style.width = "560px";	
+		document.getElementById("clear").style.height = "200px";	
+		document.getElementById("clear").style.width = "560px";	
+		document.getElementById("see").style.height = "200px";	
+		document.getElementById("see").style.width = "560px";	
+		
+		document.getElementById("spawn").style.fontSize = "80px";	
+		document.getElementById("clear").style.fontSize = "80px";	
+		document.getElementById("see").style.fontSize = "80px";	
+		document.body.style.zoom = "25%";
+		}			
+		else {
+		alert("incorrect value: Texture size could be only power of 2 and >= 32 or <=4096");
+		}
+		
+	  }
+	
+	function ResStat(){
+		alert("correct");
+	  myCanvas.width = PixSize; 
+      myCanvas.height = PixSize; 
+	  OutlookCanvas.width = PixSize/8*3;
+	  OutlookCanvas.height = PixSize/8*3;	
+	}
+	
+	function DefLayout(){
+	document.getElementById("canvas_b").style.left = "40px";
+	document.getElementById("container").style.width = "1600px";
+	document.getElementById("container").style.height = "2330px"; 	
+	document.getElementById("content").style.height = "1900px";
+	document.getElementById("footer").style.height = "100px";
+	document.getElementById("button_a").style.height = "70px";
+	document.getElementById("button_a").style.width = "450px";
+	document.getElementById("form_a").style.height = "650px";
+	document.getElementById("form_a").style.width = "750px";	
+	document.getElementById("form_b").style.height = "650px";
+	document.getElementById("form_b").style.width = "650px";	
+	document.getElementById("spawn").style.height = "50px";	
+	document.getElementById("spawn").style.width = "140px";	
+	document.getElementById("clear").style.height = "50px";	
+	document.getElementById("clear").style.width = "140px";	
+	document.getElementById("see").style.height = "50px";	
+	document.getElementById("see").style.width = "140px";		
+
+	document.getElementById("spawn").style.fontSize = "20px";	
+	document.getElementById("clear").style.fontSize = "20px";	
+	document.getElementById("see").style.fontSize = "20px";	
+	document.body.style.zoom = "100%";
+	
+	
+	
+	}
+	
+	
+</script>
+	
+	
+</body>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+	<title>Home</title>
+	<style>
+		body{background-color:#26734d;font-family:Arial;}
+		#container{width:1600px;height:1340px;background-color:#40bf80;margin-left:auto;margin-right:auto;margin-top:2%;margin-bottom:2%;border-radius:20px;}
+		#header{width:96%;height:200px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:30px;}
+		#top{width:100%;height:90px;text-align:center;line-height:90px;color:#26734d;}
+		#menu{background-color:#40bf80;width:96%;height:80px;border:6px solid #26734d;border-radius:20px;margin-left:auto;margin-right:auto;}
+		#menu ul li a{display:block;text-decoration:none;color:#26734d;font-size:24px;position:relative;top:10px;}
+		#menu ul li{float:left;line-height:43px;margin-left:12px;list-style-type:none;}
+		.list{background-color:#8cd9b3;border-radius:10px;width:346px;height:60px;position:relative;top:-6px;left:-26px;}
+		.list:hover{background-color:#66ffb5;}
+		#a{position:relative;left:130px;}
+		#b{position:relative;left:140px;}
+		#c{position:relative;left:110px;}
+		#d{position:relative;left:100px;}
+		
+		#content{width:96%;height:880px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:70px;}
+		h2, h4{position:relative;top:20px;left:20px;color:#26734d;}
+		.ghi{position:relative;left:40px;top:40px;color:#26734d;font-size:18px;}
+		
+		#footer{width:96%;height:100px;margin-left:auto;margin-right:auto;background-color:#8cd9b3;border-radius:20px;position:relative;top:100px;}
+		.footer_text_a{color:#26734d;font-size:18px;position:relative;left:400px;top:20px;}
+		.footer_text_b{color:#26734d;font-size:18px;position:relative;left:280px;top:20px;}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="top"> <h1>RandTextureGen - Home</h1> </div>
+			<div id="menu">
+				<ul>
+					<li> <div class="list"><a id="a" href="#">HOME</a></div> </li>
+					<li> <div class="list"><a id="b" href="app.html">APP</a></div> </li>
+					<li> <div class="list"><a id="c" href="tutorial.html">TUTORIAL</a></div> </li>
+					<li> <div class="list"><a id="d" href="terms.html">COPYRIGHT</a></div> </li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<h2>RandTextureGen</h2>
+			<p class="ghi">Welcome to the TextureGen website, are you looking for how to quickly create an unusual texture? This is the place for you.</p>
+			<br><br><br>
+			<h4>What does RandTextureGen do?</h4>
+			<p class="ghi">Possibility to create:</p>
+			<ul  class="ghi">
+				<li>a texture for free, which you can further process, publish or sell</li>
+				<li>textures from 32x32 to 4096x4096 px sizes</li>
+				<li>seamless texture</li>
+				<li>unique textures</li>
+			</ul>
+			<br><br><br>
+			<h4>About RandTextureGen</h4>
+			<p class="ghi">It is a free web application, the purpose of which is to provide free access to good quality textures created by the user himself.</p>
+			<p class="ghi">Thanks to my long-term work, I created a project generating seamless, unique textures, from fragments of photos, as a project in Unreal Engine 4.</p>
+			<p class="ghi">Its disadvantage, however, was the lack of accessibility to users of other game engines and independent users.</p>
+			<p class="ghi">That is why this project was created that can make this useful tool available to everyone.</p>
+			<br><br><br>
+			<h4>Requirements:</h4>
+			<p class="ghi">To fully enjoy the texture generator you should have:</p>
+			<ul  class="ghi">
+				<li>An Internet browser - version released after 2009.</li>
+				<li>A graphics card with at least 128 MB RAM.</li>
+			</ul>
+		</div>
+		<div id="footer">
+			<p class="footer_text_a">This website is devoted to computer graphics, in particular to images and textures.</p> <p class="footer_text_b">The purpose of this web application is to deliver it free of charge the possibility of obtaining textures from any photo.</p>
+		</div>
+	</div>
+</body>
